@@ -45,6 +45,15 @@ public class GameController {
         return "matching";
     }
 
+    // 지역 검색
+    @RequestMapping(value="/matchingSearch", method = RequestMethod.GET)
+    public String MatchingSearch(@RequestParam(value="location") String city, Model model,Pageable pageable) {
+        Page<GameDo> board = gameMongoRepository.findByLocation(city, pageable);
+        model.addAttribute("searchboard", board);
+        return "matching";
+    }
+
+
     @RequestMapping(value="/save", method = RequestMethod.GET)
     public void save(
             @RequestParam(required = false) String type,

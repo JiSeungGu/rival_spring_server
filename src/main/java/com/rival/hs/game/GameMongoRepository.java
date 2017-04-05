@@ -21,6 +21,8 @@ public interface GameMongoRepository extends MongoRepository<GameDo, String> {
     @Query(value = "{ 'type' : ?0}")
     public Page<GameDo> findByType(String type, Pageable pageable);
 
+    @Query(value = "{ 'city' : ?0}")
+    public Page<GameDo> findByLocation(String city, Pageable pageable);
     //public List<GameDo> find
 
 
