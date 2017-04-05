@@ -20,8 +20,9 @@ public interface MatchMongoRepository extends MongoRepository<MatchDo, String> {
     @Query(value = "{ 'type' : ?0}")
     public Page<MatchDo> findByType(String type, Pageable pageable);
 
+    @Query(value = "{ 'city' : ?0}")
+    public Page<MatchDo> findByLocation(String city, Pageable pageable);
+    //public List<GameDo> find
+
     //public List<MatchDo> find
-
-
-
 }
