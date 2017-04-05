@@ -29,27 +29,19 @@ public class MatchController {
         return matchMongoRepository.findByCityAndType(city, type);
     }
 
-    // 축구, 풋볼 게시판 가져오기
-    @RequestMapping(value="/matching", method = RequestMethod.GET)
-    public String SportBoard(Model model, @RequestParam(value="type", required = false) String type, Pageable pageable){
+    // 축구, 풋볼 게시판 가져오기 & 지역 검색
+    @RequestMapping(value="/match/list", method = RequestMethod.GET)
+        public String SportBoard(Model model, @RequestParam(value="type", required = false) String type, @RequestParam(value="city", required = false)String city, Pageable pageable){
 
         System.out.println(type);
-        Page<MatchDo> board = matchMongoRepository.findByType(type, pageable);
+        System.out.println(city);
+        Page<MatchDo> board = matchMongoRepository.findByType(type, city, pageable);
 
         model.addAttribute("board",board);
         model.addAttribute("title",type);
-
+        model.addAttribute("city",city);
         return "matching";
     }
-
-    // 지역 검색
-    @RequestMapping(value="/matchingSearch", method = RequestMethod.GET)
-    public String MatchingSearch(@RequestParam(value="location") String city, Model model,Pageable pageable) {
-        Page<MatchDo> board = matchMongoRepository.findByLocation(city, pageable);
-        model.addAttribute("searchboard", board);
-        return "matching";
-    }
-
 
     @RequestMapping(value="/save", method = RequestMethod.GET)
     public void save(

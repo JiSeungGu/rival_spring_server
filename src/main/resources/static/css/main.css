@@ -4284,14 +4284,6 @@ body.is-login-visible #wrapper {
 	text-align: center;
 }
 
-.paging {
-	position: absolute;
-	width: 100%;
-	left: 40%;
-}
-
-
-
 .selectlocation {
     position: relative;
     top: -100px;
