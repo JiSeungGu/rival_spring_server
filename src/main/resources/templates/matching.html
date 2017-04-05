@@ -18,6 +18,11 @@
 	<style>
 		*.dis[disabled] {background:#eee; text-decoration:line-through;}
 	</style>
+	<script type="text/javascript">
+        function selectEvent(selectObj) {
+           jQuery('#search').submit();
+        }
+	</script>
 </head>
 <body xmlns:th="http://www.w3.org/1999/xhtml">
 
@@ -47,7 +52,7 @@
 								<img src="img/pic07.jpg" alt="" />
 							</span>
 			<header class="major">
-				<h1>Landing</h1>
+				<h1>Matching Board</h1>
 			</header>
 			<div class="content">
 				<p>Lorem ipsum dolor sit amet nullam consequat<br />
@@ -63,7 +68,17 @@
 		<section id="one">
 			<div class="inner">
 				<header class="major">
-					<h2 th:if="${title}=='축구'">축구&nbsp;·&nbsp;풋살</h2>
+					<div th:if="${title}=='축구'">
+                        <h2>축구&nbsp;·&nbsp;풋살</h2>
+                            <div>
+                            <select name="location" class="button" id="search" onChange="javascript:selectEvent(this)">
+								<option value="">지역선택</option>
+								<option value="서울">서울</option>
+								<option value="경기">경기</option>
+							</select>
+					       </div>
+					</div>
+
 					<h2 th:if="${title}=='야구'">야구</h2>
 					<h2 th:if="${title}=='농구'">농구</h2>
 					<h2 th:if="${title}=='족구'">족구</h2>
@@ -88,21 +103,26 @@
 						<td>5</td>
 					</tr>
 				</table>
+				<div class="boardwrite">
+					<a href="" class="button small icon fa-pencil">글쓰기</a>
+				</div>
 
 				<div class="paging">
 					<ul class="pagination pagination-sm" id="frmSearch">
-						<li th:classappend="${board.first} ? 'disabled'">
-							<a th:href="@{/matching?type=축구(page=0,size=10)}" class="button">&lt;</a>
-							<!--<a th:href="@{/matching?type=축구(page=${board.number-1},size=10)}" class=" button baseclass preclass">&lt;</a>-->
+						<li>
+							<a th:if="${board.number}==0" class="button small disabled">prev</a>
+							<a th:if="${board.number}>0" th:href="@{/matching?type=축구(page=${board.number-1},size=10)}" class="button small">prev</a>
 						</li>
 
-						<li th:each="index :${#numbers.sequence(1, __${board.totalPages == 0}__ ? 1 : __${board.totalPages}__)}" th:classappend="${board.number+1==index} ? 'active'">
-							<a th:text="${index}" th:href="@{/matching?type=축구(page=${index-1},size=10)}" class=" button">1</a>
+						<li th:each="index :${#numbers.sequence(1, __${board.totalPages == 0}__ ? 1 : __${board.totalPages}__)}">
+							<a th:if="${board.number+1==index}" th:text="${index}" th:href="@{/matching?type=축구(page=${index-1},size=10)}" class="page active">1</a>
+							<a th:if="${board.number+1!=index}" th:text="${index}" th:href="@{/matching?type=축구(page=${index-1},size=10)}" class="page">1</a>
 						</li>
 
-						<li th:classappend="${board.last} ? 'disabled'">
-							<a th:href="@{/matching?type=축구(page=${board.totalPages-1},size=10)}" class=" button">&gt;</a>
-						</li> <!-- &raquo; -->
+						<li>
+							<a th:if="${board.number}==${board.totalPages-1}" class="button small disabled">next</a>
+							<a th:if="${board.number}!=${board.totalPages-1}" th:href="@{/matching?type=축구(page=${board.number+1},size=10)}" class="small button">next</a>
+						</li>
 					</ul>
 				</div>
 			</div>
