@@ -30,7 +30,7 @@ public class MatchController {
     }
 
     // 축구, 풋볼 게시판 가져오기
-    @RequestMapping(value="/matching", method = RequestMethod.GET)
+    @RequestMapping(value="/match/list", method = RequestMethod.GET)
     public String SportBoard(Model model, @RequestParam(value="type", required = false) String type, Pageable pageable){
 
         System.out.println(type);
@@ -40,6 +40,21 @@ public class MatchController {
         model.addAttribute("title",type);
 
         return "matching";
+    }
+
+    // 경기 만들기
+    @RequestMapping(value="/match", method = RequestMethod.GET)
+    public String matchCreateView() {
+
+        System.out.println("test");
+
+        return "matchCreateView";
+    }
+    // 경기 만들기
+    @RequestMapping(value="/match2", method = RequestMethod.POST)
+    public String matchCreate() {
+
+        return "redirect:/matching";
     }
 
     @RequestMapping(value="/save", method = RequestMethod.GET)

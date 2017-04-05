@@ -37,7 +37,7 @@
             <li id="logout_menu_button"><a href="javascript:logoutWithKakao()">Logout</a></li>
         </ul>
     </nav>
-    <script src="js/kakao.js"></script>
+    <script src="/js/kakao.js"></script>
     <script th:inline="javascript">
         Kakao.Auth.getStatus(function(statusObj) {
             var kakao = statusObj['status'];

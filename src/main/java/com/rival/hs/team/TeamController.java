@@ -27,7 +27,6 @@ public class TeamController {
     public List<TeamDo> name(@RequestParam(required = false) String name) {
 
         List<TeamDo> t = teamMongoRepository.findByName(name);
-        System.out.println(t.toString());
 
         return teamMongoRepository.findByName(name);
     }
@@ -60,6 +59,7 @@ public class TeamController {
 
         return "team";
     }
+
 
     @RequestMapping(value = "/team_make", method = RequestMethod.POST)
     public String newTeam(@Validated TeamDo form, BindingResult result, Model model, HttpSession session)throws ParseException {

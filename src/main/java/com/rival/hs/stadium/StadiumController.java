@@ -1,8 +1,15 @@
 package com.rival.hs.stadium;
 
+import com.rival.hs.Holder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
@@ -10,18 +17,36 @@ import java.util.ArrayList;
  * Created by Minwoo on 2017. 3. 29..
  */
 
-@RestController
+@Controller
 public class StadiumController {
 
+
+    PageRequest pageRequest = new PageRequest(0,10,new Sort(Sort.Direction.DESC, "_id"));
+
+    @Autowired
+    Holder holder;
 
     @Autowired
     StadiumMongoRepository stadiumMongoRepository;
 
+
     @RequestMapping("/stadium")
-    public void stadium() {
+    public String stadium() {
+
+
+        return "stadium_view";
+    }
+
+    @RequestMapping("/stadium/list")
+    public String stadiumList(Model model, @RequestParam String page, Pageable pageable) {
 
 
 
+        Page<StadiumDo> stadiums = stadiumMongoRepository.findAll(pageRequest);
+
+        model.addAttribute("stadiums", stadiums);
+
+        return "stadium_list_view";
     }
 
 
@@ -49,8 +74,5 @@ public class StadiumController {
 
             System.out.println(e.getMessage());
         }
-
-
-
     }
 }
