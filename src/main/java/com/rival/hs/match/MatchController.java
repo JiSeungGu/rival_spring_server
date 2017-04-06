@@ -46,7 +46,6 @@ public class MatchController {
     @RequestMapping(value="/match", method = RequestMethod.GET)
     public String matchCreateView() {
 
-        System.out.println("test");
 
         return "matchCreateView";
     }

@@ -4285,8 +4285,6 @@ body.is-login-visible #wrapper {
 }
 
 .paging {
-	position: absolute;
-	width: 100%;
 	left: 40%;
 }
 

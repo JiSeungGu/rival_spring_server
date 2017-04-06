@@ -10,7 +10,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="js/ie/html5shiv.js"></script><![endif]-->
-	<link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" href="/css/main.css" />
 	<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
 	<!--KAKAO SDK -->
@@ -49,7 +49,7 @@
 	<section id="banner" class="style2">
 		<div class="inner">
 							<span class="image">
-								<img src="img/pic07.jpg" alt="" />
+								<img src="/img/pic07.jpg" alt="" />
 							</span>
 			<header class="major">
 				<h1>Matching Board</h1>
@@ -104,7 +104,7 @@
 					</tr>
 				</table>
 				<div class="boardwrite">
-					<a href="" class="button small icon fa-pencil">글쓰기</a>
+					<a th:href="@{/match}" class="button small icon fa-pencil">글쓰기</a>
 				</div>
 
 				<div class="paging">
@@ -136,23 +136,12 @@
 </div>
 
 <!-- Scripts -->
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery.scrolly.min.js"></script>
-<script src="js/jquery.scrollex.min.js"></script>
-<script src="js/skel.min.js"></script>
-<script src="js/util.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.scrolly.min.js"></script>
+<script src="/js/jquery.scrollex.min.js"></script>
+<script src="/js/skel.min.js"></script>
+<script src="/js/util.js"></script>
 <!--[if lte IE 8]><script src="js/ie/respond.min.js"></script><![endif]-->
-<script src="js/main.js"></script>
-<script>
-    Kakao.init('d32b44e7f16d211afcab733f0a367dda');
-    document.getElementById("logout").onclick = function () {
-        Kakao.Auth.logout(function () {
-            console.log("test");
-            setTimeout(function(){
-                location.href = "/login"
-            },1000);
-        });
-    };
-</script>
+<script src="/js/main.js"></script>
 </body>
 </html>
