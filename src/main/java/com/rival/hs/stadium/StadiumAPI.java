@@ -1,6 +1,9 @@
 package com.rival.hs.stadium;
 
 
+import com.rival.hs.Holder;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -12,14 +15,16 @@ import java.net.URLEncoder;
  */
 public class StadiumAPI {
 
+    @Autowired
+    Holder holder;
 
     StringBuilder urlBuilder = new StringBuilder("http://api.data.go.kr/openapi/pblfclt-opn-info-std"); /*URL*/
     StringBuilder sb;
     public String send(int i) {
 
         try {
-            urlBuilder = new StringBuilder("http://api.data.go.kr/openapi/pblfclt-opn-info-std"); /*URL*/
-            urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8")+"=78f2%2F0BGJJcNU0CYr6MlN348wkr1cW2yzN5s9Te5SVOdw9YuILlj%2BGt4cGrptcbMx%2BfPaNH2EMjhqacLCy9p7Q%3D%3D");
+            urlBuilder = new StringBuilder("http://"+holder.getStadium().get("api").get("host")); /*URL*/
+            urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8")+"="+holder.getStadium().get("api").get("key"));
             urlBuilder.append("&" + URLEncoder.encode("s_page","UTF-8") + "=" + URLEncoder.encode(String.valueOf(i), "UTF-8")); /*파라미터설명*/
             urlBuilder.append("&" + URLEncoder.encode("s_list","UTF-8") + "=" + URLEncoder.encode("999", "UTF-8")); /*파라미터설명*/
             //urlBuilder.append("&" + URLEncoder.encode("type","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*파라미터설명*/

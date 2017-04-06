@@ -43,6 +43,27 @@ public class MatchController {
         return "matching";
     }
 
+    // 경기 만들기
+    @RequestMapping(value="/match", method = RequestMethod.GET)
+    public String matchCreateView() {
+
+
+        return "matchCreateView";
+    }
+    // 경기 만들기
+    @RequestMapping(value="/match2", method = RequestMethod.POST)
+    public String matchCreate() {
+
+        return "redirect:/matching";
+    }
+    // 지역 검색
+    @RequestMapping(value="/matchingSearch", method = RequestMethod.GET)
+    public String MatchingSearch(@RequestParam(value="location") String city, Model model,Pageable pageable) {
+        Page<MatchDo> board = matchMongoRepository.findByLocation(city, pageable);
+        model.addAttribute("searchboard", board);
+        return "matching";
+    }
+
     @RequestMapping(value="/save", method = RequestMethod.GET)
     public void save(
             @RequestParam(required = false) String type,

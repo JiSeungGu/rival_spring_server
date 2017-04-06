@@ -12,6 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.stereotype.Controller;
 
 import java.nio.charset.Charset;
 
@@ -20,21 +21,20 @@ import java.nio.charset.Charset;
 @SpringBootApplication
 public class SpringMvcApplication {
 
-
-
 	@Autowired
 	MatchMongoRepository matchMongoRepository;
 	TeamMongoRepository teamMongoRepository;
 	KakaoMongoRepository kakaoMongoRepository;
 	UserRepository userRepository;
 
-
 	public static void main(String[] args) {
+
+		Holder holder = new Holder();
+
 		SpringApplication.run(SpringMvcApplication.class, args);
 
 
 	}
-
 
 	@Bean
 	public HttpMessageConverter<String> responseBodyConverter() {

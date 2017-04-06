@@ -9,10 +9,17 @@
 	<title>RIVAL</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<<<<<<< HEAD
+	<!--[if lte IE 8]><script src="js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="/css/main.css" />
+	<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
+=======
 	<!--[if lte IE 8]><script src="/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/css/main.css" />
 	<!--[if lte IE 9]><link rel="stylesheet" href="/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="/css/ie8.css" /><![endif]-->
+>>>>>>> 4e44ad13222de10e36000bb41847fd5f9a792854
 	<!--KAKAO SDK -->
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 	<style>
@@ -45,7 +52,7 @@
 	<section id="banner" class="style2">
 		<div class="inner">
 							<span class="image">
-								<img src="img/pic07.jpg" alt="" />
+								<img src="/img/pic07.jpg" alt="" />
 							</span>
 			<header class="major">
 				<h1>Matching Board</h1>
@@ -127,7 +134,7 @@
 				</div>
 				<!--게시판 등록 버튼-->
 				<div class="boardwrite">
-					<a href="" class="button small icon fa-pencil">글쓰기</a>
+					<a th:href="@{/match}" class="button small icon fa-pencil">글쓰기</a>
 				</div>
 				<!--페이징 처리-->
 				<div>
@@ -164,6 +171,7 @@
 <script src="/js/jquery.scrollex.min.js"></script>
 <script src="/js/skel.min.js"></script>
 <script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
 <!--[if lte IE 8]><script src="/js/ie/respond.min.js"></script><![endif]-->
 <script src="/js/main.js"></script>
 <script>
