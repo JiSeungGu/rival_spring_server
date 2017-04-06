@@ -4292,3 +4292,8 @@ body.is-login-visible #wrapper {
 .boardwrite{
 	float: right;
 }
+
+.locationcolor{
+	background-color: #242943 !important;
+	color: #ffffff;
+}

@@ -82,43 +82,49 @@
 						<h2>볼링</h2>
 					</div>
 					<!--지역 선택에 따라 게시판 변경-->
-					<div>
+					<div class="select-wrapper">
 						<form th:action="@{/match/list}" method="get" name="location">
 							<input type="hidden" name="type" th:value="${title}"/>
 							<input type="hidden" name="page" value="0"/>
 							<input type="hidden" name="size" value="10"/>
                           		<select name="city" class="button" id="search" onchange='if(this.value != 0) { this.form.submit(); }'>
-									<option value="0" th:selected="${city}==''">지역선택</option>
-									<option value="서울" th:selected="${city}=='서울'">서울</option>
-									<option value="경기" th:selected="${city}=='경기'">경기</option>
-									<option value="인천" th:selected="${city}=='인천'">인천</option>
-									<option value="강원" th:selected="${city}=='강원'">강원</option>
-									<option value="충청" th:selected="${city}=='충청'">충청</option>
-									<option value="전라" th:selected="${city}=='전라'">전라</option>
-									<option value="경상" th:selected="${city}=='경상'">경상</option>
-									<option value="제주" th:selected="${city}=='제주'">제주</option>
+									<option value="0" th:selected="${city}==''" class="locationcolor">지역선택</option>
+									<option value="서울" th:selected="${city}=='서울'" class="locationcolor">서울</option>
+									<option value="경기" th:selected="${city}=='경기'" class="locationcolor">경기</option>
+									<option value="인천" th:selected="${city}=='인천'" class="locationcolor">인천</option>
+									<option value="강원" th:selected="${city}=='강원'" class="locationcolor">강원</option>
+									<option value="충청" th:selected="${city}=='충청'" class="locationcolor">충청</option>
+									<option value="전라" th:selected="${city}=='전라'" class="locationcolor">전라</option>
+									<option value="경상" th:selected="${city}=='경상'" class="locationcolor">경상</option>
+									<option value="제주" th:selected="${city}=='제주'" class="locationcolor">제주</option>
 								</select>
 							</form>
 					</div>
 				</header>
-				<table class="table">
-					<tr class="table_tr">
-						<th>번호</th>
-						<th>제목</th>
-						<th>신청팀</th>
-						<th>게임시간</th>
-						<th>팀원수</th>
-						<th>조회</th>
-					</tr>
-					<tr th:each="b : ${board}">
-						<td>1</td>
-						<td th:text="${b.title}">축구해요</td>
-						<td th:text="${b.team}">김희중</td>
-						<td th:text="${b.time_game}">2017-04-01 17:00</td>
-						<td th:text="${b.people_num}"></td>
-						<td>5</td>
-					</tr>
-				</table>
+				<div class="table-wrapper">
+					<table>
+						<thead>
+							<tr>
+								<!--<th>번호</th>-->
+								<th>제목</th>
+								<th>신청팀</th>
+								<th>게임시간</th>
+								<th>팀원수</th>
+								<th>조회</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="b : ${board}">
+								<!--<td>1</td>-->
+								<td th:text="${b.title}">축구해요</td>
+								<td th:text="${b.team}">김희중</td>
+								<td th:text="${b.time_game}">2017-04-01 17:00</td>
+								<td th:text="${b.people_num}"></td>
+								<td>5</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 				<!--게시판 등록 버튼-->
 				<div class="boardwrite">
 					<a href="" class="button small icon fa-pencil">글쓰기</a>
