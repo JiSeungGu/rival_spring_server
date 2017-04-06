@@ -10,12 +10,12 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="css/main.css" />
-		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
+		<link rel="stylesheet" href="/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="/css/ie8.css" /><![endif]-->
 
 		<!--KAKAO SDK -->
-		<script src="js/jquery.min.js"></script>
+		<script src="/js/jquery.min.js"></script>
 		<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 		<script th:inline="javascript">
@@ -75,10 +75,11 @@
 										<img src="img/soccer.jpg" alt="" />
 									</span>
 									<header class="major">
-										<form name="selectSoccer" method="get" action="/match/list">
+										<form name="selectSoccer" method="get" th:action="@{/match/list}">
 											<input type="hidden" name="type" value="축구"/>
 											<input type="hidden" name="page" value="0"/>
 											<input type="hidden" name="size" value="10"/>
+											<input type="hidden" name="city" value="서울"/>
 											<h3><a href="javascript:soccer()" class="link">축구, 풋살</a></h3>
 											<p>Foot Ball</p>
 										</form>
@@ -89,10 +90,11 @@
 										<img src="img/baseball.jpg" alt="" />
 									</span>
 									<header class="major">
-										<form name="selectBaseball" method="get" action="/match/list">
+										<form name="selectBaseball" method="get" th:action="@{/match/list}">
 											<input type="hidden" name="type" value="야구"/>
 											<input type="hidden" name="page" value="0"/>
 											<input type="hidden" name="size" value="10"/>
+											<input type="hidden" name="city" value="서울"/>
 											<h3><a href="javascript:baseball()" class="link">야구</a></h3>
 											<p>base ball</p>
 										</form>
@@ -103,10 +105,11 @@
 										<img src="img/basketball.jpg" alt="" />
 									</span>
 									<header class="major">
-										<form name="selectBasketball" method="get" action="/matchlist">
+										<form name="selectBasketball" method="get" th:action="@{/match/list}">
 											<input type="hidden" name="type" value="농구"/>
 											<input type="hidden" name="page" value="0"/>
 											<input type="hidden" name="size" value="10"/>
+											<input type="hidden" name="city" value="서울"/>
 											<h3><a href="javascript:basketball()" class="link">농구</a></h3>
 											<p>basketball</p>
 										</form>
@@ -117,10 +120,11 @@
 										<img src="img/minisoccer.png" alt="" />
 									</span>
 									<header class="major">
-										<form name="selectVolleyfootball" method="get" action="/match/list">
+										<form name="selectVolleyfootball" method="get" th:action="@{/match/list}">
 											<input type="hidden" name="type" value="족구"/>
 											<input type="hidden" name="page" value="0"/>
 											<input type="hidden" name="size" value="10"/>
+											<input type="hidden" name="city" value="서울"/>
 											<h3><a href="javascript:volleyfootball()" class="link">족구</a></h3>
 											<p> Foot Volleyball </p>
 										</form>
@@ -131,10 +135,15 @@
 										<img src="img/billiadr.png" alt="" />
 									</span>
 									<header class="major">
+<<<<<<< HEAD
 										<form name="selectBilliards" method="get" action="/match/list">
+=======
+										<form name="selectBilliards" method="get" th:action="@{/match/list}">
+>>>>>>> 4e44ad13222de10e36000bb41847fd5f9a792854
 											<input type="hidden" name="type" value="당구"/>
 											<input type="hidden" name="page" value="0"/>
 											<input type="hidden" name="size" value="10"/>
+											<input type="hidden" name="city" value="서울"/>
 											<h3><a href="javascript:billiards()" class="link">당구</a></h3>
 											<p>Billiards</p>
 										</form>
@@ -145,10 +154,11 @@
 										<img src="img/bowling.jpg" alt="" />
 									</span>
 									<header class="major">
-										<form name="selectBowling" method="get" action="/match/list">
+										<form name="selectBowling" method="get" th:action="@{/match/list}">
 											<input type="hidden" name="type" value="볼링"/>
 											<input type="hidden" name="page" value="0"/>
 											<input type="hidden" name="size" value="10"/>
+											<input type="hidden" name="city" value="서울"/>
 											<h3><a href="javascript:bowling()" class="link">볼링</a></h3>
 											<p>Bowling</p>
 										</form>
@@ -161,11 +171,11 @@
 				<div th:replace="footer :: copy"></div>
 			</div>
 		<!-- Scripts -->
-			<script src="js/jquery.scrolly.min.js"></script>
-			<script src="js/jquery.scrollex.min.js"></script>
-			<script src="js/skel.min.js"></script>
-			<script src="js/util.js"></script>
+			<script src="/js/jquery.scrolly.min.js"></script>
+			<script src="/js/jquery.scrollex.min.js"></script>
+			<script src="/js/skel.min.js"></script>
+			<script src="/js/util.js"></script>
 			<!--[if lte IE 8]><script src="js/ie/respond.min.js"></script><![endif]-->
-			<script src="js/main.js"></script>
+			<script src="/js/main.js"></script>
 	</body>
 </html>
