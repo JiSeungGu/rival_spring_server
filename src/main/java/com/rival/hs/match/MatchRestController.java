@@ -17,7 +17,7 @@ public class MatchRestController {
 
 
     @RequestMapping(value="/match/{m_no}", method = RequestMethod.GET)
-    public MatchDo getMatch(@PathVariable("bno") String bno) {
+    public MatchDo getMatch(@PathVariable("m_no") String bno) {
 
 
         return matchMongoRepository.findOne(bno);
