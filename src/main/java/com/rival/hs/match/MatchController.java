@@ -21,16 +21,10 @@ public class MatchController {
     @Autowired
     MatchMongoRepository matchMongoRepository;
 
-    @RequestMapping(value="/game", method = RequestMethod.GET)
-    @ResponseBody
-    public List<MatchDo> index(@RequestParam(required = false) String city, @RequestParam(required = false) String type) {
 
-
-        return matchMongoRepository.findByCityAndType(city, type);
-    }
 
     // 축구, 풋볼 게시판 가져오기 & 지역 검색
-    @RequestMapping(value="/match/list", method = RequestMethod.GET)
+    @RequestMapping(value="/match/board", method = RequestMethod.GET)
         public String SportBoard(Model model, @RequestParam(value="type", required = false) String type, @RequestParam(value="city", required = false)String city, Pageable pageable){
 
         System.out.println(type);
@@ -42,6 +36,7 @@ public class MatchController {
         model.addAttribute("city",city);
         return "matching";
     }
+
 
     // 경기 만들기
     @RequestMapping(value="/match", method = RequestMethod.GET)

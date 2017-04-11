@@ -23,6 +23,8 @@ public class TeamController {
     @Autowired
     TeamMongoRepository teamMongoRepository;
 
+
+    @ResponseBody
     @RequestMapping(value="/teamN", method = RequestMethod.GET)
     public List<TeamDo> name(@RequestParam(required = false) String name) {
 
