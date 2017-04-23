@@ -6,7 +6,6 @@ package com.rival.hs.controller;
 
 import com.rival.hs.match.MatchMongoRepository;
 import com.rival.hs.team.TeamDo;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.io.*;
-import java.util.*;
 
 @Controller
 public class WebController {
@@ -39,7 +36,7 @@ public class WebController {
         return "index";
     }
 
-    @RequestMapping(value="/test")
+   /* @RequestMapping(value="/test")
     public String test(Model model) {
 
         ArrayList<Object> test = new ArrayList<>();
@@ -83,7 +80,7 @@ public class WebController {
 
 
         return "test";
-    }
+    }*/
 
 
     @RequestMapping(value="/login")
