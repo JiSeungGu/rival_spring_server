@@ -26,7 +26,6 @@ public class MatchController {
     @Autowired
     MatchMongoRepository matchMongoRepository;
 
-
     @RequestMapping(value="/game", method = RequestMethod.GET)
     @ResponseBody
     public List<MatchDo> index(@RequestParam(required = false) String city, @RequestParam(required = false) String type) {
@@ -34,7 +33,7 @@ public class MatchController {
     }
 
     /*축구, 풋볼 게시판 가져오기 & 지역 검색*/
-    @RequestMapping(value="/match/list", method = RequestMethod.GET)
+    @RequestMapping(value="/match/board", method = RequestMethod.GET)
         public String SportBoard(Model model, @RequestParam(value="type", required = false) String type, @RequestParam(value="city", required = false)String city, Pageable pageable){
 
 
