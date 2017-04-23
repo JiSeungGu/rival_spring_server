@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-public class StadiumRestController {
+public class StadiumRestController implements StadiumMapper{
 
 
 

@@ -22,7 +22,7 @@
 				<!-- Header -->
 				<!-- Note: The "styleN" class below should match that of the banner element. -->
 					<header id="header" class="alt style2">
-						<a href="index.html" class="logo"><strong>Rival</strong> <span>by PSCKL</span></a>
+						<a href="../index.html" class="logo"><strong>Rival</strong> <span>by PSCKL</span></a>
 						<nav>
 							<a href="#menu">Menu</a>
 						</nav>
@@ -31,10 +31,10 @@
 				<!-- Menu -->
 					<nav id="menu">
 						<ul class="links">
-							<li><a href="index.html">Home</a></li>
+							<li><a href="../index.html">Home</a></li>
 							<li><a href="team.html">Team</a></li>
-							<li><a href="generic.html">Generic</a></li>
-							<li><a href="elements.html">Elements</a></li>
+							<li><a href="../generic.html">Generic</a></li>
+							<li><a href="../elements.html">Elements</a></li>
 						</ul>
 						<ul class="actions vertical">
 							<li><a href="#" class="button special fit">Get Started</a></li>
@@ -61,39 +61,22 @@
 
 				<!-- Main -->
 					<div id="main">
+
 						<!-- One -->
 							<section id="one">
 								<div class="inner">
 									<header class="major">
 										<h2>Make your team</h2>
 									</header>
-									<form action="#"  method="post">
-										<p>Name: <input type="text"/></p>
-										<p>team:
-											<select>
-												<option value="volvo">Volvo</option>
-												<option value="saab">Saab</option>
-												<option value="mercedes">Mercedes</option>
-												<option value="audi">Audi</option>
-											</select>
-										</p>
-										<p>city:
-											<select>
-												<option value="volvo">Volvo</option>
-												<option value="saab">Saab</option>
-												<option value="mercedes">Mercedes</option>
-												<option value="audi">Audi</option>
-											</select>
-										</p>
-										<p> stadium:
-											<select>
-												<option value="volvo">Volvo</option>
-												<option value="saab">Saab</option>
-												<option value="mercedes">Mercedes</option>
-												<option value="audi">Audi</option>
-											</select>
-										</p>
-										<p><textarea/></p>
+									<form action="#" th:action="@{/team_make}" th:object="${TeamDo}" method="post">
+										<p>Name: <input type="text" th:field="*{name}" /></p>
+										<p>type: <input type="text" th:field="*{type}"  /></p>
+										<p>city: <input type="text" th:field="*{city}"  /></p>
+										<p>captain name: <input type="text" th:field="*{captain}"  /></p>
+										<p>emblam: <input type="text" th:field="*{emblem}"  /></p>
+										<p>image: <input type="text" th:field="*{image}"  /></p>
+										<p>content: </p>
+										<p><textarea th:field="*{introduce}"  /></p>
 										<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 									</form>
 								</div>

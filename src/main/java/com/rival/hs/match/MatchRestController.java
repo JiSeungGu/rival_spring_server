@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 @RestController
-public class MatchRestController {
+public class MatchRestController implements MatchMapper{
 
     @Autowired
     MatchMongoRepository matchMongoRepository;
@@ -24,14 +24,12 @@ public class MatchRestController {
     }
 
     // 축구, 풋볼 게시판 가져오기 & 지역 검색
-    @RequestMapping(value="/match/list", method = RequestMethod.GET)
+    @RequestMapping(value="/match/list2", method = RequestMethod.GET)
     public List<MatchDo> getMatchList(){
 
         List<MatchDo> output = matchMongoRepository.findAll();
 
         return output;
     }
-
-
 
 }

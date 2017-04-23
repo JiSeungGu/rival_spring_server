@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 
 @Controller
-public class StadiumController {
+public class StadiumController implements StadiumMapper{
 
 
     PageRequest pageRequest = new PageRequest(0,10,new Sort(Sort.Direction.DESC, "_id"));
