@@ -10,47 +10,40 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
 
 /**
  * Created by Minwoo on 2017. 3. 16..
  */
 
 @Controller
-public class MatchController {
+public class MatchController implements MatchMapper{
 
     @Autowired
     MatchMongoRepository matchMongoRepository;
 
-    @RequestMapping(value="/game", method = RequestMethod.GET)
-    @ResponseBody
-    public List<MatchDo> index(@RequestParam(required = false) String city, @RequestParam(required = false) String type) {
-        return matchMongoRepository.findByCityAndType(city, type);
+    @Override
+    @RequestMapping(value="/match", method = RequestMethod.GET)
+    public String match() {
+        return "match/match";
     }
 
     /*축구, 풋볼 게시판 가져오기 & 지역 검색*/
     @RequestMapping(value="/match/board/list", method = RequestMethod.GET)
-        public String SportBoard(Model model, @RequestParam(value="type", required = false) String type, @RequestParam(value="city", required = false)String city, Pageable pageable){
-
-        System.out.println(type);
-        System.out.println(city);
+    public String SportBoard(Model model, @RequestParam(value="type", required = false) String type, @RequestParam(value="city", required = false)String city, Pageable pageable){
         Page<MatchDo> board = matchMongoRepository.findByType(type, city, pageable);
 
         model.addAttribute("board",board);
         model.addAttribute("title",type);
         model.addAttribute("city",city);
-        return "matching";
-    }
 
-    /*matchCreateView 이동*/
+        return "match/matching";
+    }
+     /*matchCreateView 이동*/
     @RequestMapping(value="/match/new", method = RequestMethod.GET)
     public String matchCreateView() {
-        return "matchCreateView";
+        return "match/matchCreateView";
     }
 
     /*경기 만들기*/
@@ -69,32 +62,9 @@ public class MatchController {
         try {
             UrlType = new String("redirect:/match/board/list?type=" + URLEncoder.encode(form.getType(),"UTF-8") + "&page=0&size=10&city=" + URLEncoder.encode(form.getCity(),"UTF-8"));
             System.out.println(UrlType);
-            System.out.println(UrlType);
         }catch (Exception e){
             System.out.println(e);
         }
         return UrlType;
     }
-
-    @RequestMapping(value="/save", method = RequestMethod.GET)
-    public void save(
-            @RequestParam(required = false) String type,
-            @RequestParam(required = false) String city,
-            @RequestParam(required = false) String team,
-            @RequestParam(required = false) String emblem,
-            @RequestParam(required = false) String title,
-            @RequestParam(required = false) String contents,
-            @RequestParam(required = false) Integer people_num,
-            @RequestParam(required = false) String stadium,
-            @RequestParam(required = false) String time_game) {
-
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd hh:mm");
-        String now = dateFormat.format(cal.getTime());
-
-        System.out.println(type+"\n"+city+"\n"+team+"\n"+emblem+"\n"+contents+"\n"+title+"\n"+people_num+"\n"+stadium+"\n"+now+"\n"+time_game);
-
-        matchMongoRepository.save(new MatchDo(type, city, team,emblem, contents, title, people_num, stadium, now, time_game));
-
-        }
 }

@@ -18,7 +18,6 @@
 
 <!-- Wrapper -->
 <div id="wrapper">
-
 	<!-- Header -->
 	<!-- Note: The "styleN" class below should match that of the banner element. -->
 	<div th:replace="header :: copy"></div>
@@ -129,7 +128,7 @@
 							<textarea name="contents" id="contents"></textarea>
 						</p>
 						<p>
-							<input type="button" value="Submit" onclick="javascript:writeCheck();"/>
+							<input type="button" value="Submit" th:action="@{/match/new}"/>
 							<input type="reset" value="Reset" />
 						</p>
 					</form>
@@ -224,33 +223,6 @@
             value.stadium_jeonla.style.display="none"
             value.stadium_gyeongsang.style.display="none"
             value.stadium_jeju.style.display="";
-        }
-    }
-
-    function writeCheck() {
-        var form = document.Sport_Select;
-        if(!form.title.value){
-            alert("제목을 적어주세요");
-            form.title.focus();
-            return;
-        }
-        else if(!form.type.value){
-            alert("종목을 선택해주세요")
-            form.type.focus();
-            return;
-        }
-        else if(!form.city.value){
-            alert("도시를 선택해주세요")
-            form.city.focus();
-            return;
-        }
-    /*    else if(!form.stadium.value){
-            alert("경기장을 선택해주세요")
-            form.stadium.focus();
-            return;
-        }*/
-        else{
-            form.submit();
         }
     }
 </script>

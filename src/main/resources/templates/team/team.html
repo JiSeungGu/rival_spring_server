@@ -22,6 +22,7 @@
 				<!-- Header -->
 				<!-- Note: The "styleN" class below should match that of the banner element. -->
 					<div th:replace="header :: copy"></div>
+				<!-- Menu -->
 
 				<!-- Banner -->
 				<!-- Note: The "styleN" class below should match that of the header element. -->
@@ -44,59 +45,42 @@
 					<div id="main">
 
 						<!-- One -->
-							<section id="one">
+							<section id="one" th:object="${MyteamList}">
 								<div class="inner">
 									<header class="major">
-										<h2>Make your team</h2>
+										<h2>Your team list</h2>
 									</header>
-									<form action="#"  method="post">
-										<p>Name: <input type="text"/></p>
-										<p>team:
-											<select>
-												<option value="volvo">Volvo</option>
-												<option value="saab">Saab</option>
-												<option value="mercedes">Mercedes</option>
-												<option value="audi">Audi</option>
-											</select>
-										</p>
-										<p>city:
-											<select>
-												<option value="volvo">Volvo</option>
-												<option value="saab">Saab</option>
-												<option value="mercedes">Mercedes</option>
-												<option value="audi">Audi</option>
-											</select>
-										</p>
-										<p> stadium:
-											<select>
-												<option value="volvo">Volvo</option>
-												<option value="saab">Saab</option>
-												<option value="mercedes">Mercedes</option>
-												<option value="audi">Audi</option>
-											</select>
-										</p>
-										<p><textarea/></p>
-										<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-									</form>
+									<article  th:each = "team : ${MyteamList}" th:width="100" th:height="100" >
+										<h3><a class="link" th:text="${team.name}">sss</a></h3>
+									</article>
+									<ul class="actions">
+										<li><a href="login.html.html" class="button" th:if ="${session} == null">Login Please</a>
+											<a th:href="@{/team/list}" class="button" th:if ="${session} != null">Make a team</a>
+												</li>
+									</ul>
 								</div>
+							</section>
+
+						<!-- Two -->
+							<section id="two" class="inner">
+								<section>
+									<div class="content">
+										<div class="inner">
+											<header class="major">
+												<h3>Apply others team</h3>
+											</header>
+											<ul class="actions">
+												<li><a href="../generic.html" class="button">Learn more</a></li>
+											</ul>
+										</div>
+									</div>
+								</section>
 							</section>
 					</div>
 
+
 				<!-- Footer -->
-					<footer id="footer">
-						<div class="inner">
-							<ul class="icons">
-								<li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
-								<li><a href="#" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
-								<li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
-								<li><a href="#" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
-								<li><a href="#" class="icon alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
-							</ul>
-							<ul class="copyright">
-								<li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
-							</ul>
-						</div>
-					</footer>
+				<div th:replace="footer :: copy"></div>
 
 			</div>
 

@@ -1,11 +1,16 @@
 package com.rival.hs.team;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
@@ -17,7 +22,7 @@ import java.util.List;
  */
 
 @Controller
-public class TeamController {
+public class TeamController implements TeamMapper{
 
 
     @Autowired
@@ -45,7 +50,7 @@ public class TeamController {
     public String TeamList(Model model,HttpSession session)
     {
         List<TeamDo> Buffer = new ArrayList<>();
-        List<TeamDo> teamDoList =teamMongoRepository.findAll();
+        List<TeamDo> teamDoList = teamMongoRepository.findAll();
         String kakao_id = "385806550"; //땅현리 id 세션값  일단 이렇게 처리해두겠음
         for(int i=0;i<teamDoList.size();i++)
         {
@@ -62,6 +67,16 @@ public class TeamController {
         return "team";
     }
 
+    @RequestMapping("/team/list")
+    public String stadiumList(Model model, Pageable pageable) {
+
+
+        Page<TeamDo> teams = teamMongoRepository.findAll(pageable);
+        model.addAttribute("teams", teams);
+
+
+        return "team/teamListView";
+    }
 
     @RequestMapping(value = "/team_make", method = RequestMethod.POST)
     public String newTeam(@Validated TeamDo form, BindingResult result, Model model, HttpSession session)throws ParseException {

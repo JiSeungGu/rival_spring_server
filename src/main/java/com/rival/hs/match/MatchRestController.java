@@ -16,6 +16,13 @@ public class MatchRestController {
     MatchMongoRepository matchMongoRepository;
 
 
+
+    @RequestMapping(value="/match/all", method = RequestMethod.GET)
+    public List<MatchDo> index(@RequestParam(required = false) String city, @RequestParam(required = false) String type) {
+
+        return matchMongoRepository.findByCityAndType(city, type);
+    }
+
     @RequestMapping(value="/match/{m_no}", method = RequestMethod.GET)
     public MatchDo getMatch(@PathVariable("m_no") String bno) {
 
@@ -25,14 +32,11 @@ public class MatchRestController {
 
     // 축구, 풋볼 게시판 가져오기 & 지역 검색
     @RequestMapping(value="/match/list", method = RequestMethod.GET)
-    @ResponseBody
     public List<MatchDo> getMatchList(){
 
         List<MatchDo> output = matchMongoRepository.findAll();
 
         return output;
     }
-
-
 
 }

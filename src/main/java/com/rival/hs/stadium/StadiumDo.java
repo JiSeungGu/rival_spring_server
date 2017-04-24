@@ -284,4 +284,37 @@ public class StadiumDo {
     public String getData_time() {
         return data_time;
     }
+
+    @Override
+    public String toString() {
+        return "StadiumDo{" +
+                "id='" + id + '\'' +
+                ", stadium_name='" + stadium_name + '\'' +
+                ", location_name='" + location_name + '\'' +
+                ", type='" + type + '\'' +
+                ", holiday='" + holiday + '\'' +
+                ", weekday_time_start='" + weekday_time_start + '\'' +
+                ", weekday_time_end='" + weekday_time_end + '\'' +
+                ", holiday_time_start='" + holiday_time_start + '\'' +
+                ", holiday_time_end='" + holiday_time_end + '\'' +
+                ", b_fee='" + b_fee + '\'' +
+                ", standard_time='" + standard_time + '\'' +
+                ", fare='" + fare + '\'' +
+                ", name='" + name + '\'' +
+                ", excess_fare='" + excess_fare + '\'' +
+                ", capacity='" + capacity + '\'' +
+                ", area='" + area + '\'' +
+                ", information='" + information + '\'' +
+                ", book_way='" + book_way + '\'' +
+                ", picture='" + picture + '\'' +
+                ", road_address='" + road_address + '\'' +
+                ", management_agency='" + management_agency + '\'' +
+                ", department='" + department + '\'' +
+                ", phone_num='" + phone_num + '\'' +
+                ", homepage='" + homepage + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", data_time='" + data_time + '\'' +
+                '}';
+    }
 }
