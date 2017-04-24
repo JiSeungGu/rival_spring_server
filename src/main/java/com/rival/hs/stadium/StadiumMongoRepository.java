@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 public interface StadiumMongoRepository extends MongoRepository<StadiumDo, String> {
 
 
-    public Page<StadiumDo> findAll(Pageable pageable);
+    Page<StadiumDo> findAll(Pageable pageable);
+    StadiumDo findById(String id);
 
 }

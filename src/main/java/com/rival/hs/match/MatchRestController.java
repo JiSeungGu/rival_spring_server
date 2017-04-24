@@ -10,11 +10,20 @@ import java.util.List;
  */
 
 @RestController
-public class MatchRestController implements MatchMapper{
+public class MatchRestController {
 
     @Autowired
     MatchMongoRepository matchMongoRepository;
 
+
+
+    @RequestMapping(value="/match/all", method = RequestMethod.GET)
+    public List<MatchDo> index(@RequestParam(required = false) String city, @RequestParam(required = false) String type) {
+
+
+
+        return matchMongoRepository.findByCityAndType(city, type);
+    }
 
     @RequestMapping(value="/match/{m_no}", method = RequestMethod.GET)
     public MatchDo getMatch(@PathVariable("m_no") String bno) {

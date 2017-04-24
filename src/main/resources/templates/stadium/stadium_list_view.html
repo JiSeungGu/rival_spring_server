@@ -82,20 +82,7 @@
 					</tr>
 				</table>
 
-				<div class="paging">
-					<ul class="pagination pagination-sm" id="frmSearch">
-						<li th:classappend="${stadiums.first} ? 'disabled'">
-							<a th:href="@{/stadium/list?type=축구(page=0,size=10)}" class="button">&lt;</a>
-							<!--<a th:href="@{/matching?type=축구(page=${board.number-1},size=10)}" class=" button baseclass preclass">&lt;</a>-->
-						</li>
-						<li th:each="index : ${#numbers.sequence(__${stadiums.number}__+1, __${stadiums.totalPages == 0}__ ? 1 : __${stadiums.number}__+5)}">
-							<a th:text="${index}" th:href="@{/matching?type=축구(page=1,size=10)}" class=" button">1</a>
-						</li>
-						<li th:classappend="${stadiums.last} ? 'disabled'">
-							<a th:href="@{/stadium/list?type=축구(page=${stadiums.totalPages-1},size=10)}" class=" button">&gt;</a>
-						</li> <!-- &raquo; -->
-					</ul>
-				</div>
+				<div th:replace="page :: copy (${stadiums}, 'stadium')"></div>
 			</div>
 		</section>
 

@@ -66,7 +66,7 @@ public class TeamController implements TeamMapper{
     }
 
     @RequestMapping("/team/list")
-    public String stadiumList(Model model, @RequestParam String page, Pageable pageable) {
+    public String stadiumList(Model model, Pageable pageable) {
 
 
         Page<TeamDo> teams = teamMongoRepository.findAll(pageable);

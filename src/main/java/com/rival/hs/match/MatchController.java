@@ -7,8 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -24,22 +28,37 @@ public class MatchController implements MatchMapper{
     MatchMongoRepository matchMongoRepository;
 
 
+    @Override
+    @RequestMapping(value="/match", method = RequestMethod.GET)
+    public String match() {
+
+
+        return "match/match";
+    }
+
+
     /*축구, 풋볼 게시판 가져오기 & 지역 검색*/
     @RequestMapping(value="/match/list", method = RequestMethod.GET)
     public String SportBoard(Model model, @RequestParam(value="type", required = false) String type, @RequestParam(value="city", required = false)String city, Pageable pageable){
-
-        System.out.println(type);
-        System.out.println(city);
         Page<MatchDo> board = matchMongoRepository.findByType(type, city, pageable);
 
         model.addAttribute("board",board);
         model.addAttribute("title",type);
         model.addAttribute("city",city);
+
         return "matching";
+
+    }
+    //경기 만들기 뷰
+    @RequestMapping(value="/match/new", method = RequestMethod.GET)
+    public String matchCreateView() {
+
+
+        return "match/matchCreateView";
     }
 
-
-    @RequestMapping(value="/match", method = RequestMethod.POST)
+    // 경기 만들기
+    @RequestMapping(value="/match/new", method = RequestMethod.POST)
     public String matchCreate(@Validated MatchDo form, BindingResult result, Model model) {
         MatchDo board = new MatchDo();
         board.setTitle(form.getTitle());
@@ -52,28 +71,14 @@ public class MatchController implements MatchMapper{
 
         String UrlType=null;
         try {
-            UrlType = new String(("redirect:/match/list?type=" + form.getType() + "&page=0&size=10&city=" + form.getCity()).getBytes("UTF-8"), "UTF-8");
+            UrlType = new String("redirect:/match/list?type=" + URLEncoder.encode(form.getType(),"UTF-8") + "&page=0&size=10&city=" + URLEncoder.encode(form.getCity(),"UTF-8"));
+
             System.out.println(UrlType);
 
         }catch (Exception e){
             System.out.println(e);
         }
         return UrlType;
-    }
-
-
-    // 경기 만들기
-    @RequestMapping(value="/match/new", method = RequestMethod.GET)
-    public String matchCreateView() {
-
-
-        return "matchCreateView";
-    }
-    // 경기 만들기
-    @RequestMapping(value="/match/new", method = RequestMethod.POST)
-    public String matchCreate() {
-
-        return "redirect:/matching";
     }
 
     @RequestMapping(value="/save", method = RequestMethod.GET)
