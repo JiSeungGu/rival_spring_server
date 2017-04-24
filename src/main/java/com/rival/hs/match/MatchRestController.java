@@ -22,8 +22,6 @@ public class MatchRestController {
     @RequestMapping(value="/match/all", method = RequestMethod.GET)
     public List<MatchDo> index(@RequestParam(required = false) String city, @RequestParam(required = false) String type) {
 
-
-
         return matchMongoRepository.findByCityAndType(city, type);
     }
 
@@ -35,7 +33,7 @@ public class MatchRestController {
     }
 
     // 축구, 풋볼 게시판 가져오기 & 지역 검색
-    @RequestMapping(value="/match/list2", method = RequestMethod.GET)
+    @RequestMapping(value="/match/list", method = RequestMethod.GET)
     public List<MatchDo> getMatchList(){
 
         List<MatchDo> output = matchMongoRepository.findAll();

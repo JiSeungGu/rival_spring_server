@@ -38,9 +38,8 @@ public class MatchController implements MatchControllerMapper {
         return "match/match";
 
     }
-
     /*축구, 풋볼 게시판 가져오기 & 지역 검색*/
-    @RequestMapping(value="/match/list", method = RequestMethod.GET)
+    @RequestMapping(value="/match/board/list", method = RequestMethod.GET)
     public String SportBoard(Model model, @RequestParam(value="type", required = false) String type, @RequestParam(value="city", required = false)String city, Pageable pageable){
         Page<MatchDo> board = matchMongoRepository.findByType(type, city, pageable);
 
@@ -51,15 +50,13 @@ public class MatchController implements MatchControllerMapper {
         return "match/matching";
 
     }
-    //경기 만들기 뷰
+     /*matchCreateView 이동*/
     @RequestMapping(value="/match/new", method = RequestMethod.GET)
     public String matchCreateView() {
-
-
         return "match/matchCreateView";
     }
 
-    // 경기 만들기
+    /*경기 만들기*/
     @RequestMapping(value="/match/new", method = RequestMethod.POST)
     public String matchCreate(@Validated MatchDo form, BindingResult result, Model model) {
         MatchDo board = new MatchDo();
@@ -73,10 +70,8 @@ public class MatchController implements MatchControllerMapper {
 
         String UrlType=null;
         try {
-            UrlType = new String("redirect:/match/list?type=" + URLEncoder.encode(form.getType(),"UTF-8") + "&page=0&size=10&city=" + URLEncoder.encode(form.getCity(),"UTF-8"));
-
+            UrlType = new String("redirect:/match/board/list?type=" + URLEncoder.encode(form.getType(),"UTF-8") + "&page=0&size=10&city=" + URLEncoder.encode(form.getCity(),"UTF-8"));
             System.out.println(UrlType);
-
         }catch (Exception e){
             System.out.println(e);
         }
