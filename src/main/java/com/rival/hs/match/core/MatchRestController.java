@@ -1,5 +1,6 @@
-package com.rival.hs.match;
+package com.rival.hs.match.core;
 
+import com.rival.hs.match.dao.MatchMongoRepository;
 import com.rival.hs.match.domain.MatchDo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package com.rival.hs.match;
+package com.rival.hs.match.core;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;

@@ -1,16 +1,15 @@
-package com.rival.hs.team;
+package com.rival.hs.team.core;
 
+import com.rival.hs.team.domain.TeamDo;
+import com.rival.hs.team.dao.TeamMongoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,19 +24,16 @@ public class TeamController implements TeamControllerMapper{
     @Autowired
     TeamMongoRepository teamMongoRepository;
 
-
     @Override
-    public String getTeamDetail(Model model, @PathVariable String id) {
-
+    public String getTeamDetailView(Model model, String id) {
         TeamDo teamDo = teamMongoRepository.findByName(id);
 
         model.addAttribute("team", teamDo);
         return "team/team_detail_view";
     }
 
-    @RequestMapping(value = "/team")
-    public String TeamList(Model model,HttpSession session)
-    {
+    @Override
+    public String getTeamMenuView(Model model, HttpSession session) {
         List<TeamDo> Buffer = new ArrayList<>();
         List<TeamDo> teamDoList = teamMongoRepository.findAll();
         String kakao_id = "385806550"; //땅현리 id 세션값  일단 이렇게 처리해두겠음
@@ -53,22 +49,18 @@ public class TeamController implements TeamControllerMapper{
         }
         model.addAttribute("MyteamList",Buffer);
 
-        return "team";
+        return "team/team";
     }
-
-    @RequestMapping("/team/list")
-    public String stadiumList(Model model, Pageable pageable) {
-
+    @Override
+    public String getTeamListView(Model model, Pageable pageable) {
 
         Page<TeamDo> teams = teamMongoRepository.findAll(pageable);
         model.addAttribute("teams", teams);
 
-
         return "team/teamListView";
     }
-
-    @RequestMapping(value = "/team_make", method = RequestMethod.POST)
-    public String newTeam(@Validated TeamDo form, BindingResult result, Model model, HttpSession session)throws ParseException {
+    @Override
+    public String getTeamCreateView(TeamDo form, BindingResult result, Model model, HttpSession session) {
         TeamDo teamdo = new TeamDo();
         teamdo.setName(form.getName());
         teamdo.setCaptain(form.getCaptain());

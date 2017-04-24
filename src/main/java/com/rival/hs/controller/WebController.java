@@ -4,8 +4,8 @@ package com.rival.hs.controller;
  * Created by Sung on 2017. 3. 8..
  */
 
-import com.rival.hs.match.MatchMongoRepository;
-import com.rival.hs.team.TeamDo;
+import com.rival.hs.match.dao.MatchMongoRepository;
+import com.rival.hs.team.domain.TeamDo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

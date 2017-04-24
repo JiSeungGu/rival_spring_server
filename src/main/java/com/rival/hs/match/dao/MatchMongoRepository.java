@@ -1,4 +1,4 @@
-package com.rival.hs.match;
+package com.rival.hs.match.dao;
 
 import com.rival.hs.match.domain.MatchDo;
 import org.springframework.data.domain.Page;
