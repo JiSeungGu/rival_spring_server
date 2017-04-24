@@ -10,7 +10,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.net.URLEncoder;
 
 /**
@@ -18,17 +17,27 @@ import java.net.URLEncoder;
  */
 
 @Controller
-public class MatchController implements MatchMapper{
+public class MatchController implements MatchControllerMapper {
 
     @Autowired
     MatchMongoRepository matchMongoRepository;
 
     @Override
-    @RequestMapping(value="/match", method = RequestMethod.GET)
-    public String match() {
-        return "match/match";
+    public String getMatchDetail(String id, Model model) {
+
+        MatchDo matchDo = matchMongoRepository.findOne(id);
+        model.addAttribute("match", matchDo);
+
+        return "match/match_detail_view";
     }
 
+    @Override
+    @RequestMapping(value="/match", method = RequestMethod.GET)
+    public String match() {
+
+        return "match/match";
+
+    }
     /*축구, 풋볼 게시판 가져오기 & 지역 검색*/
     @RequestMapping(value="/match/board/list", method = RequestMethod.GET)
     public String SportBoard(Model model, @RequestParam(value="type", required = false) String type, @RequestParam(value="city", required = false)String city, Pageable pageable){
@@ -39,6 +48,7 @@ public class MatchController implements MatchMapper{
         model.addAttribute("city",city);
 
         return "match/matching";
+
     }
      /*matchCreateView 이동*/
     @RequestMapping(value="/match/new", method = RequestMethod.GET)
