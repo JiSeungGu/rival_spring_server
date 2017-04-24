@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public interface StadiumControllerMapper {
 
-    String stadium();
+    String getStadium();
 
     @RequestMapping("/stadium/board/list")
-    String stadiumList(Model model, Pageable pageable);
+    String getStadiumList(Model model, Pageable pageable, @RequestParam(value = "location", required = false) String location);
 
     @RequestMapping("/stadium/board/{id}")
-    String stadiumDetail(Model model, @PathVariable float id);
+    String getStadiumDetail(Model model, @PathVariable float id);
 
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
@@ -31,29 +32,40 @@ public class StadiumController implements StadiumControllerMapper {
 
 
     @RequestMapping("/stadium")
-    public String stadium() {
+    public String getStadium() {
 
-        return "stadium/stadium_view";
+        return "getStadium/stadium_view";
     }
 
     @Override
-    public String stadiumList(Model model, Pageable pageable) {
+    public String getStadiumList(Model model, Pageable pageable, @RequestParam(value = "location", required = false) String location) {
 
-        Page<StadiumDo> stadiums = stadiumMongoRepository.findAll(pageRequest);
+        Page<StadiumDo> stadiums;
+        if(location == null) {
+
+            stadiums = stadiumMongoRepository.findAll(pageRequest);
+
+        }
+        else {
+
+            stadiums = stadiumMongoRepository.findAllByLocation_name(location, pageRequest);
+
+        }
+
 
         model.addAttribute("stadiums", stadiums);
 
-        return "stadium/stadium_list_view";
+        return "getStadium/stadium_list_view";
     }
 
     @Override
-    public String stadiumDetail(Model model, @PathVariable float id) {
+    public String getStadiumDetail(Model model, @PathVariable float id) {
 
         StadiumDo stadiumDo = stadiumMongoRepository.findById(String.valueOf(id));
 
-        model.addAttribute("stadium", stadiumDo);
+        model.addAttribute("getStadium", stadiumDo);
 
-        return "stadium/stadium_detail_view";
+        return "getStadium/stadium_detail_view";
     }
 
     @RequestMapping("/stadiumapi")

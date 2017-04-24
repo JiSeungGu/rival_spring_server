@@ -11,6 +11,9 @@ public interface StadiumMongoRepository extends MongoRepository<StadiumDo, Strin
 
 
     Page<StadiumDo> findAll(Pageable pageable);
+
+    Page<StadiumDo> findAllByLocation_name(String location_name, Pageable pageable);
+
     StadiumDo findById(String id);
 
 }

@@ -35,7 +35,6 @@ public class MatchController implements MatchControllerMapper {
     @RequestMapping(value="/match", method = RequestMethod.GET)
     public String match() {
 
-
         return "match/match";
 
     }

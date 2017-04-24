@@ -20,7 +20,7 @@ public class MatchDo {
      * @param String    contents        팀 뭐시기
      * @param String    title           팀 뭐시기
      * @param Integer   people_num      팀 뭐시기
-     * @param String    stadium         팀 뭐시기
+     * @param String    getStadium         팀 뭐시기
      * @param String    time_update     팀 뭐시기
      * @param String    time_game       팀 뭐시기
      * @param String    city            팀 뭐시기
