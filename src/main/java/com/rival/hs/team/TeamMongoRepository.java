@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface TeamMongoRepository extends MongoRepository<TeamDo, String> {
 
-    List<TeamDo> findByName(String name);
+    List<TeamDo> findAllByName(String name);
     //List<TeamDo> findByMember_id(int id);
     //public List<TeamDo> findByMember_id(String id);
 
@@ -21,9 +21,8 @@ public interface TeamMongoRepository extends MongoRepository<TeamDo, String> {
     @Query(value = "{ 'city' : ?0, 'type' : ?1 }")
     List<TeamDo> findByCityAndType(String city,String type);
 
-    public Page<TeamDo> findAll(Pageable pageable);
+    Page<TeamDo> findAll(Pageable pageable);
 
-
-    //public List<TeamDo> findAll();
+    TeamDo findByName(String name);
 
 }

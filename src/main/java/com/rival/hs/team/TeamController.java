@@ -1,6 +1,5 @@
 package com.rival.hs.team;
 
-import com.rival.hs.stadium.StadiumDo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,30 +19,22 @@ import java.util.List;
  */
 
 @Controller
-public class TeamController implements TeamMapper{
+public class TeamController implements TeamControllerMapper{
 
 
     @Autowired
     TeamMongoRepository teamMongoRepository;
 
 
-    @ResponseBody
-    @RequestMapping(value="/teamN", method = RequestMethod.GET)
-    public List<TeamDo> name(@RequestParam(required = false) String name) {
+    @Override
+    public String getTeamDetail(Model model, @PathVariable String id) {
 
-        List<TeamDo> t = teamMongoRepository.findByName(name);
+        TeamDo teamDo = teamMongoRepository.findByName(id);
 
-        return teamMongoRepository.findByName(name);
+        model.addAttribute("team", teamDo);
+        return "team/team_detail_view";
     }
 
-    @RequestMapping(value="/teamCT", method = RequestMethod.GET)
-    public List<TeamDo> cityAndType(@RequestParam(required = false) String city,@RequestParam(required = false) String type) {
-
-        List<TeamDo> t = teamMongoRepository.findByCityAndType(city,type);
-        System.out.println(t.toString());
-
-        return teamMongoRepository.findByCityAndType(city,type);
-    }
     @RequestMapping(value = "/team")
     public String TeamList(Model model,HttpSession session)
     {
@@ -75,6 +66,8 @@ public class TeamController implements TeamMapper{
 
         return "team/teamListView";
     }
+
+
 
     @RequestMapping(value = "/team_make", method = RequestMethod.POST)
     public String newTeam(@Validated TeamDo form, BindingResult result, Model model, HttpSession session)throws ParseException {

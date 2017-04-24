@@ -3,6 +3,8 @@ package com.rival.hs.match;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -39,6 +41,27 @@ public class MatchRestController {
         List<MatchDo> output = matchMongoRepository.findAll();
 
         return output;
+    }
+
+    @RequestMapping(value="/save", method = RequestMethod.GET)
+    public void save(
+            @RequestParam(required = false) String type,
+            @RequestParam(required = false) String city,
+            @RequestParam(required = false) String team,
+            @RequestParam(required = false) String emblem,
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) String contents,
+            @RequestParam(required = false) Integer people_num,
+            @RequestParam(required = false) String stadium,
+            @RequestParam(required = false) String time_game) {
+
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd hh:mm");
+        String now = dateFormat.format(cal.getTime());
+
+        System.out.println(type+"\n"+city+"\n"+team+"\n"+emblem+"\n"+contents+"\n"+title+"\n"+people_num+"\n"+stadium+"\n"+now+"\n"+time_game);
+
+        matchMongoRepository.save(new MatchDo(type, city, team,emblem, contents, title, people_num, stadium, now, time_game));
     }
 
 }

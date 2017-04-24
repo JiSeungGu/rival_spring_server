@@ -1,5 +1,6 @@
 package com.rival.hs.match;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -25,6 +26,7 @@ public class MatchDo {
      * @param String    city            팀 뭐시기
      */
 
+    @Id
     public String id;
     private String type;
     private String city;

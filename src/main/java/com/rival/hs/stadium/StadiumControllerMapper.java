@@ -13,10 +13,10 @@ public interface StadiumControllerMapper {
 
     String stadium();
 
-    @RequestMapping("/stadium/list")
+    @RequestMapping("/stadium/board/list")
     String stadiumList(Model model, Pageable pageable);
 
-    @RequestMapping("/stadium/{id}")
+    @RequestMapping("/stadium/board/{id}")
     String stadiumDetail(Model model, @PathVariable float id);
 
 }
