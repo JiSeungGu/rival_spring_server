@@ -1,4 +1,4 @@
-package com.rival.hs.stadium;
+package com.rival.hs.stadium.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -284,6 +284,8 @@ public class StadiumDo {
     public String getData_time() {
         return data_time;
     }
+
+
 
     @Override
     public String toString() {

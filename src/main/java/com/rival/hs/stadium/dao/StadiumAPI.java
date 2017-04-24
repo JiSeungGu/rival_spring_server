@@ -1,4 +1,4 @@
-package com.rival.hs.stadium;
+package com.rival.hs.stadium.dao;
 
 
 import com.rival.hs.Holder;

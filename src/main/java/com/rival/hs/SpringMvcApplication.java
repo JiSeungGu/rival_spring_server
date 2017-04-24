@@ -21,18 +21,10 @@ import java.nio.charset.Charset;
 @SpringBootApplication
 public class SpringMvcApplication {
 
-	@Autowired
-	MatchMongoRepository matchMongoRepository;
-	TeamMongoRepository teamMongoRepository;
-	KakaoMongoRepository kakaoMongoRepository;
-	UserRepository userRepository;
 
 	public static void main(String[] args) {
 
-		Holder holder = new Holder();
-
 		SpringApplication.run(SpringMvcApplication.class, args);
-
 
 	}
 

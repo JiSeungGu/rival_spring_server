@@ -1,5 +1,6 @@
 package com.rival.hs.match;
 
+import com.rival.hs.match.domain.MatchDo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +28,7 @@ public class MatchController implements MatchControllerMapper {
 
         MatchDo matchDo = matchMongoRepository.findOne(id);
         model.addAttribute("match", matchDo);
+
 
         return "match/match_detail_view";
     }
@@ -66,6 +68,7 @@ public class MatchController implements MatchControllerMapper {
         board.setCity(form.getCity());
         board.setStadium(form.getStadium());
         board.setContents(form.getContents());
+
         matchMongoRepository.save(board);
 
         String UrlType=null;

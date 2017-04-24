@@ -24,7 +24,6 @@ function loginWithKakao() {
                 dataType: "json",
                 contentType : "application/json; charset=UTF-8",
                 success: function(data, textStatus) {
-
                     if (data.redirect) {
                         // data.redirect contains the string URL to redirect to
                     }
@@ -32,10 +31,11 @@ function loginWithKakao() {
                         // data.form contains the HTML for the replacement form
                         $("#myform").replaceWith(data.form);
                     }
+                    alert(authObj);
                 }
             });
 
-            window.location.href = "/index";
+            //window.location.href = "/index";
         },
         fail: function(err) {
             alert(JSON.stringify(err));

@@ -1,5 +1,6 @@
 package com.rival.hs.match;
 
+import com.rival.hs.match.domain.MatchDo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,7 @@ import java.util.List;
  */
 
 @RestController
-public class MatchRestController {
+public class MatchRestController implements MatchRestControllerMapper{
 
     @Autowired
     MatchMongoRepository matchMongoRepository;

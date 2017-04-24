@@ -1,7 +1,7 @@
-package com.rival.hs.stadium;
+package com.rival.hs.stadium.access;
 
+import com.rival.hs.stadium.domain.StadiumDo;
 import org.w3c.dom.Document;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
@@ -11,7 +11,6 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Minwoo on 2017. 4. 1..

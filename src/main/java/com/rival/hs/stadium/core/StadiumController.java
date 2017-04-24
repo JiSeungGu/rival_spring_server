@@ -1,6 +1,9 @@
-package com.rival.hs.stadium;
+package com.rival.hs.stadium.core;
 
-import com.rival.hs.Holder;
+import com.rival.hs.stadium.dao.StadiumAPI;
+import com.rival.hs.stadium.domain.StadiumDo;
+import com.rival.hs.stadium.dao.StadiumMongoRepository;
+import com.rival.hs.stadium.access.StadiumXMLParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,33 +28,28 @@ public class StadiumController implements StadiumControllerMapper {
     PageRequest pageRequest = new PageRequest(0,10,new Sort(Sort.Direction.DESC, "_id"));
 
     @Autowired
-    Holder holder;
-
-    @Autowired
     StadiumMongoRepository stadiumMongoRepository;
 
-
-    @RequestMapping("/stadium")
+    @Override
     public String getStadium() {
 
         return "getStadium/stadium_view";
     }
 
     @Override
-    public String getStadiumList(Model model, Pageable pageable, @RequestParam(value = "location", required = false) String location) {
+    public String getStadiumList(Model model, Pageable pageable, @RequestParam(value = "location_name", required = false) String location_Name) {
 
         Page<StadiumDo> stadiums;
-        if(location == null) {
+        if(location_Name == null) {
 
             stadiums = stadiumMongoRepository.findAll(pageRequest);
 
         }
         else {
 
-            stadiums = stadiumMongoRepository.findAllByLocation_name(location, pageRequest);
+            stadiums = stadiumMongoRepository.findAllByLocation_name(location_Name, pageRequest);
 
         }
-
 
         model.addAttribute("stadiums", stadiums);
 

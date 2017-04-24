@@ -1,4 +1,4 @@
-package com.rival.hs.match;
+package com.rival.hs.match.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -27,7 +27,7 @@ public class MatchDo {
      */
 
     @Id
-    public String id;
+    public Long id;
     private String type;
     private String city;
     private String team;
@@ -56,11 +56,12 @@ public class MatchDo {
         this.time_update = time_update;
         this.time_game = time_game;
     }
-    public String getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
