@@ -33,7 +33,7 @@ public class StadiumController implements StadiumControllerMapper {
     @Override
     public String getStadium() {
 
-        return "getStadium/stadium_view";
+        return "stadium/stadium_view";
     }
 
     @Override
@@ -53,7 +53,7 @@ public class StadiumController implements StadiumControllerMapper {
 
         model.addAttribute("stadiums", stadiums);
 
-        return "getStadium/stadium_list_view";
+        return "stadium/stadium_list_view";
     }
 
     @Override
@@ -63,7 +63,7 @@ public class StadiumController implements StadiumControllerMapper {
 
         model.addAttribute("getStadium", stadiumDo);
 
-        return "getStadium/stadium_detail_view";
+        return "stadium/stadium_detail_view";
     }
 
     @RequestMapping("/stadiumapi")
