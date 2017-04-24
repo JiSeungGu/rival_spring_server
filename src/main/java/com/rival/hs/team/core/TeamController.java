@@ -25,6 +25,11 @@ public class TeamController implements TeamControllerMapper{
     TeamMongoRepository teamMongoRepository;
 
     @Override
+    public String getTeamCreateView() {
+        return "team/teamNew";
+    }
+
+    @Override
     public String getTeamDetailView(Model model, String id) {
         TeamDo teamDo = teamMongoRepository.findByName(id);
 
@@ -60,7 +65,7 @@ public class TeamController implements TeamControllerMapper{
         return "team/teamListView";
     }
     @Override
-    public String getTeamCreateView(TeamDo form, BindingResult result, Model model, HttpSession session) {
+    public String postTeamCreate(TeamDo form, BindingResult result, Model model, HttpSession session) {
         TeamDo teamdo = new TeamDo();
         teamdo.setName(form.getName());
         teamdo.setCaptain(form.getCaptain());

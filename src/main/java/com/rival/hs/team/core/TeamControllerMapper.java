@@ -26,7 +26,11 @@ public interface TeamControllerMapper {
     @RequestMapping("/team/board/list")
     String getTeamListView(Model model, Pageable pageable);
 
+    @RequestMapping("/team/board/new")
+    String getTeamCreateView();
+
+
     @RequestMapping( value = "/team/board/new", method = RequestMethod.POST)
-    String getTeamCreateView(@Validated TeamDo form, BindingResult result, Model model, HttpSession session);
+    String postTeamCreate(@Validated TeamDo form, BindingResult result, Model model, HttpSession session);
 
 }
