@@ -26,7 +26,6 @@ repositories {
 
 
 dependencies {
-
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
 	compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '1.5.2.RELEASE'

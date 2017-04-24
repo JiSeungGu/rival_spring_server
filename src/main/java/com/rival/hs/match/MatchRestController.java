@@ -25,6 +25,7 @@ public class MatchRestController {
 
     // 축구, 풋볼 게시판 가져오기 & 지역 검색
     @RequestMapping(value="/match/list", method = RequestMethod.GET)
+    @ResponseBody
     public List<MatchDo> getMatchList(){
 
         List<MatchDo> output = matchMongoRepository.findAll();
