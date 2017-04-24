@@ -1,11 +1,11 @@
-<div id="page" th:fragment="copy (values, value2)">
+<div id="page" th:fragment="copy (values, value2)" xmlns:th="http://www.w3.org/1999/xhtml">
     <ul class="pagination pagination-sm" id="frmSearch">
         <li>
             <a th:if="${values.number}==0" class="button small disabled">prev</a>
             <a th:if="${values.number}>0" th:href="@{'/'+${value2}+'/list(type=${title},page=${values.number-1},size=10,city=${city})'}" class="button small">prev</a>
         </li>
 
-        <li th:each="index :${#numbers.sequence(1, __${values.totalPages == 0}__ ? 1 : __${values.totalPages}__)}">
+        <li th:each="index :${#numbers.sequence(__${stadiums.number}__+1, __${stadiums.totalPages == 0}__ ? 1 : __${stadiums.number}__+5)}">
             <a th:if="${values.number+1==index}" th:text="${index}" th:href="@{'/'+${value2}+'/list(type=${title},page=${index-1},size=10,city=${city})'}" class="page active">1</a>
             <a th:if="${values.number+1!=index}" th:text="${index}" th:href="@{'/'+${value2}+'/list(type=${title},page=${index-1},size=10,city=${city})'}" class="page">1</a>
         </li>

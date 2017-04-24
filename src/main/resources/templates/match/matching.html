@@ -129,7 +129,7 @@
 							<a th:if="${board.number}>0" th:href="@{/match/board/list(type=${title},page=${board.number-1},size=10,city=${city})}" class="button small">prev</a>
 						</li>
 
-						<li th:each="index :${#numbers.sequence(1, __${board.totalPages == 0}__ ? 1 : __${board.totalPages}__)}">
+						<li th:each="index :${#numbers.sequence(__${board.number}__+1, __${board.totalPages == 0}__ ? 1 : __${board.number}__+5)}">
 							<a th:if="${board.number+1==index}" th:text="${index}" th:href="@{/match/board/list(type=${title},page=${index-1},size=10,city=${city})}" class="page active">1</a>
 							<a th:if="${board.number+1!=index}" th:text="${index}" th:href="@{/match/board/list(type=${title},page=${index-1},size=10,city=${city})}" class="page">1</a>
 						</li>

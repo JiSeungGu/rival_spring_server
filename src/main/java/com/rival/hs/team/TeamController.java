@@ -93,7 +93,7 @@ public class TeamController implements TeamMapper{
         teamdo.setMember_id(kakao_id);
 
         teamMongoRepository.save(teamdo);
-        return "redirect:/team";
+        return "redirect:/team/team";
 
     }
 
