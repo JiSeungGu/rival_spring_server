@@ -2,9 +2,16 @@ package com.rival.hs.match.core;
 
 import com.rival.hs.match.dao.MatchMongoRepository;
 import com.rival.hs.match.domain.MatchDo;
+import com.rival.hs.mongodb.CounterDao;
+import com.rival.hs.mongodb.CounterDo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.core.FindAndModifyOptions;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +30,8 @@ public class MatchController implements MatchControllerMapper {
 
     @Autowired
     MatchMongoRepository matchMongoRepository;
+
+    CounterDao counterDao;
 
     @Override
     public String getMatchDetail(String id, Model model) {
@@ -70,9 +79,12 @@ public class MatchController implements MatchControllerMapper {
         board.setStadium(form.getStadium());
         board.setContents(form.getContents());
 
+        Long id = counterDao.sequence("MATCH_TB");
+        board.setId(id);
+
         matchMongoRepository.save(board);
 
-        String UrlType=null;
+        String UrlType = null;
         try {
             UrlType = new String("redirect:/match/board/list?type=" + URLEncoder.encode(form.getType(),"UTF-8") + "&page=0&size=10&city=" + URLEncoder.encode(form.getCity(),"UTF-8"));
             System.out.println(UrlType);

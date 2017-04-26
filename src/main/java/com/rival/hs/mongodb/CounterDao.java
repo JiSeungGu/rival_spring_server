@@ -6,16 +6,31 @@ import com.mongodb.DBObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 
 /**
  * Created by Minwoo on 2017. 4. 24..
  */
 public class CounterDao {
 
+    @Autowired
+    MongoTemplate mongoTemplate;
 
+    public Long sequence(String tableName) {
 
+        Query query = new Query();
+        query.addCriteria(Criteria.where("_id").is(tableName));
+
+        Update update = new Update();
+        update.inc("sequence_value", 1);
+
+        CounterDo counterDo = mongoTemplate.findAndModify(query, update, new FindAndModifyOptions().returnNew(true), CounterDo.class);
+
+        return counterDo.getSequence_value();
+    }
 }
