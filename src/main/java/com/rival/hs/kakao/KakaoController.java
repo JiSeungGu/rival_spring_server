@@ -25,14 +25,14 @@ public class KakaoController {
     private JsonParser jsonParser = new JsonParser();
 
     @RequestMapping(value="/kakao", method = RequestMethod.POST)
-    public void kakao(@RequestBody KakaoDo body,HttpSession session) {
+    public String kakao(@RequestBody KakaoDo body) {
 
-        System.out.println(session.getId());
 
-        body.setKakao_info(jsonParser.parse(kakaoAPI.send(body.getAccess_token())));
-        session.setAttribute("id",body.getKakao_info().getId());
+        System.out.println("test");
 
         dao.save(body);
+
+        return "redirect:/index";
     }
 
     @RequestMapping(value="/kakaoInfo", method = RequestMethod.GET)

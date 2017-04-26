@@ -25,7 +25,7 @@ public interface MatchControllerMapper {
     @RequestMapping(value="/match/board/list", method = RequestMethod.GET)
     String SportBoard(Model model, @RequestParam(value="type", required = false) String type, @RequestParam(value="city", required = false)String city, Pageable pageable);
 
-    @RequestMapping(value="/match/new", method = RequestMethod.GET)
+    @RequestMapping(value="/match/board/new", method = RequestMethod.GET)
     String matchCreateView();
 
     @RequestMapping(value="/match/new", method = RequestMethod.POST)

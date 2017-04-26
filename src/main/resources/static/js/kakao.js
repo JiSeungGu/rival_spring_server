@@ -17,9 +17,11 @@ function loginWithKakao() {
     // 로그인 창을 띄웁니다.
     Kakao.Auth.login({
         success: function(authObj) {
+
+            //alert(JSON.stringify(authObj));
             $.ajax({
                 type: "POST",
-                url: "http://127.0.0.1:8080/kakao",
+                url: "http://localhost:8080/kakao",
                 data:  JSON.stringify(authObj),
                 dataType: "json",
                 contentType : "application/json; charset=UTF-8",
@@ -32,9 +34,14 @@ function loginWithKakao() {
                         $("#myform").replaceWith(data.form);
                     }
                     alert(authObj);
+                },
+                error : function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(thrownError);
                 }
             });
 
+            //$.post("http://localhost:8080/kakao", { name: "John", time: "2pm" } );
             //window.location.href = "/index";
         },
         fail: function(err) {
