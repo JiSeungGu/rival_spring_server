@@ -1,4 +1,4 @@
-package com.rival.hs.user;
+package com.rival.hs.user.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

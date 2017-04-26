@@ -1,6 +1,7 @@
 package com.rival.hs.user;
 
 
+import com.rival.hs.user.domain.UserDo;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;

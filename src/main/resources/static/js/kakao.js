@@ -10,8 +10,10 @@ Kakao.init('d32b44e7f16d211afcab733f0a367dda');
 
 function getStatus() {
     Kakao.Auth.getStatus(function(statusObj) {
-        var kakao = statusObj['status']
-    });
+        var kakao = statusObj['user']['id'];
+
+    alert(JSON.stringify(statusObj));
+});
 }
 function loginWithKakao() {
     // 로그인 창을 띄웁니다.
@@ -40,7 +42,7 @@ function loginWithKakao() {
                     alert(thrownError);
                 }
             });
-
+            getStatus();
             //$.post("http://localhost:8080/kakao", { name: "John", time: "2pm" } );
             //window.location.href = "/index";
         },
