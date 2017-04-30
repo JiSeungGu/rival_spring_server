@@ -89,3 +89,5 @@ application.yml
 .idea/*
 .idea/
 src/main/webapp/
+
+*.yaml

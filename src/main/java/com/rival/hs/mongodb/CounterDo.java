@@ -1,5 +1,6 @@
 package com.rival.hs.mongodb;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -9,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "SEQUENCE_TB")
 public class CounterDo {
 
+    @Id
     String _id;
     Long sequence_value;
 

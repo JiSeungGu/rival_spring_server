@@ -2,16 +2,12 @@ package com.rival.hs.match.core;
 
 import com.rival.hs.match.dao.MatchMongoRepository;
 import com.rival.hs.match.domain.MatchDo;
-import com.rival.hs.mongodb.CounterDao;
+import com.rival.hs.mongodb.CounterRepository;
 import com.rival.hs.mongodb.CounterDo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,19 +29,19 @@ public class MatchController implements MatchControllerMapper {
     @Autowired
     MatchMongoRepository matchMongoRepository;
 
-    CounterDao counterDao;
+    @Autowired
+    CounterRepository counterRepository;
+
+    @Autowired
+    MongoTemplate mongoTemplate;
 
     /*Matching board Detail*/
     @Override
     public String getMatchDetail(@PathVariable Long id, Model model) {
 
 
-        System.out.println(id);
-
         MatchDo matchDo = matchMongoRepository.findOne(id);
         model.addAttribute("board", matchDo);
-
-        matchDo.toString();
 
         return "match/match_detail_view";
     }
@@ -78,6 +74,7 @@ public class MatchController implements MatchControllerMapper {
     /*경기 만들기*/
     @RequestMapping(value="/match/new", method = RequestMethod.POST)
     public String matchCreate(@Validated MatchDo form, BindingResult result, Model model) {
+
         MatchDo board = new MatchDo();
         board.setTitle(form.getTitle());
         board.setTeam(form.getTeam());
@@ -86,8 +83,17 @@ public class MatchController implements MatchControllerMapper {
         board.setStadium(form.getStadium());
         board.setContents(form.getContents());
 
-        Long id = counterDao.sequence("MATCH_TB");
-        board.setId(id);
+        CounterDo counterDo = counterRepository.getCounterDo("MATCH_TB");
+
+//        Query query = new Query();
+//        query.addCriteria(Criteria.where("_id").is("MATCH_TB"));
+//        Update update = new Update();
+//        update.inc("sequence_value", 1);
+//
+//        CounterDo counterDo = mongoTemplate.findAndModify(query, update, new FindAndModifyOptions().returnNew(true), CounterDo.class);
+//
+//        board.setId(counterDo.getSequence_value());
+        board.setId(counterDo.getSequence_value());
 
         matchMongoRepository.save(board);
 
