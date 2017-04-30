@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import java.net.URLEncoder;
 
 /**
@@ -34,11 +35,17 @@ public class MatchController implements MatchControllerMapper {
 
     CounterDao counterDao;
 
+    /*Matching board Detail*/
     @Override
-    public String getMatchDetail(@PathVariable String id, Model model) {
+    public String getMatchDetail(@PathVariable Long id, Model model) {
+
+
+        System.out.println(id);
 
         MatchDo matchDo = matchMongoRepository.findOne(id);
-        model.addAttribute("match", matchDo);
+        model.addAttribute("board", matchDo);
+
+        matchDo.toString();
 
         return "match/match_detail_view";
     }
@@ -65,7 +72,7 @@ public class MatchController implements MatchControllerMapper {
      /*matchCreateView 이동*/
     @RequestMapping(value="/match/new", method = RequestMethod.GET)
     public String matchCreateView() {
-        return "match/matchCreateView";
+        return "/match/matchCreateView";
     }
 
     /*경기 만들기*/

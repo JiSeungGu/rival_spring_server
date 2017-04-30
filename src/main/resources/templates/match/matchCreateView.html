@@ -18,6 +18,7 @@
 
 <!-- Wrapper -->
 <div id="wrapper">
+
 	<!-- Header -->
 	<!-- Note: The "styleN" class below should match that of the banner element. -->
 	<div th:replace="header :: copy"></div>
@@ -152,18 +153,18 @@
 <!--[if lte IE 8]><script src="/js/ie/respond.min.js"></script><![endif]-->
 <script src="/js/main.js"></script>
 <script language="javascript">
-	function Choice_City(obj) {
+    function Choice_City(obj) {
         var value = document.forms.Sport_Select;
         if(obj=="서울"){
             value.stadium_none.style.display="none"
             value.stadium_seoul.style.display = "";
             value.stadium_gyeonggi.style.display = "none";
             value.stadium_incheon.style.display="none";
-			value.stadium_chungcheong.style.display="none"
-			value.stadium_jeonla.style.display="none"
-			value.stadium_gyeongsang.style.display="none"
-			value.stadium_jeju.style.display="none";
-		}
+            value.stadium_chungcheong.style.display="none"
+            value.stadium_jeonla.style.display="none"
+            value.stadium_gyeongsang.style.display="none"
+            value.stadium_jeju.style.display="none";
+        }
         else if(obj=="경기"){
             value.stadium_none.style.display="none"
             value.stadium_seoul.style.display = "none";
@@ -183,8 +184,8 @@
             value.stadium_jeonla.style.display="none"
             value.stadium_gyeongsang.style.display="none"
             value.stadium_jeju.style.display="none";
-		}
-		else if(obj=="충청"){
+        }
+        else if(obj=="충청"){
             value.stadium_none.style.display="none"
             value.stadium_seoul.style.display = "none";
             value.stadium_gyeonggi.style.display = "none";
@@ -193,7 +194,7 @@
             value.stadium_jeonla.style.display="none"
             value.stadium_gyeongsang.style.display="none"
             value.stadium_jeju.style.display="none";
-		}
+        }
         else if(obj=="전라"){
             value.stadium_none.style.display="none"
             value.stadium_seoul.style.display = "none";

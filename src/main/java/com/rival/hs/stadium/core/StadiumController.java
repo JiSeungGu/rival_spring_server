@@ -32,22 +32,19 @@ public class StadiumController implements StadiumControllerMapper {
 
     @Override
     public String getStadium() {
-
         return "stadium/stadium_view";
     }
 
     @Override
-    public String getStadiumList(Model model, Pageable pageable, @RequestParam(value = "location_name", required = false) String location_Name) {
+    public String getStadiumList(Model model, Pageable pageable, @RequestParam(value = "location_name", required = false) String location_name) {
 
         Page<StadiumDo> stadiums;
-        if(location_Name == null) {
-
+        if(location_name == null) {
             stadiums = stadiumMongoRepository.findAll(pageRequest);
-
         }
         else {
 
-            stadiums = stadiumMongoRepository.findAllByLocation_name(location_Name, pageRequest);
+            stadiums = stadiumMongoRepository.findAllByLocation_name(location_name, pageRequest);
 
         }
 

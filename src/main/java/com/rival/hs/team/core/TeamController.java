@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +78,8 @@ public class TeamController implements TeamControllerMapper{
         teamdo.setMember_id(kakao_id);
 
         teamMongoRepository.save(teamdo);
-        return "redirect:/team";
+        return "redirect:/team/team";
+
     }
 }
 

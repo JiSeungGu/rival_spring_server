@@ -12,7 +12,7 @@ public class MatchDo {
 
     /**
      * @author MinwooPark<pmw9027@outlook.kr>
-     * @param String    id              팀 뭐시기
+     * @param Long    id              팀 뭐시기
      * @param String    type            팀 뭐시기
      * @param String    city            팀 뭐시기
      * @param String    team            팀 뭐시기
@@ -27,7 +27,7 @@ public class MatchDo {
      */
 
     @Id
-    public Long id;
+    private Long id;
     private String type;
     private String city;
     private String team;

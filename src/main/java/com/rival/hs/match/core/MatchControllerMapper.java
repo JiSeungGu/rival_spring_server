@@ -20,7 +20,7 @@ public interface MatchControllerMapper {
     String match();
 
     @RequestMapping("/match/board/{id}")
-    String getMatchDetail(@PathVariable String id, Model model);
+    String getMatchDetail(@PathVariable Long id, Model model);
 
     @RequestMapping(value="/match/board/list", method = RequestMethod.GET)
     String SportBoard(Model model, @RequestParam(value="type", required = false) String type, @RequestParam(value="city", required = false)String city, Pageable pageable);

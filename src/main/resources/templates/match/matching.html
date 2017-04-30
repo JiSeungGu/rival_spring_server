@@ -108,7 +108,7 @@
 						<tbody>
 							<tr th:each="b : ${board}">
 								<!--<td>1</td>-->
-								<td th:text="${b.title}">축구해요</td>
+								<td><a th:href="@{/match/board/${b.id}}" th:text="${b.title}">축구해요</a></td>
 								<td th:text="${b.team}">김희중</td>
 								<td th:text="${b.time_game}">2017-04-01 17:00</td>
 								<td th:text="${b.people_num}"></td>
@@ -129,7 +129,7 @@
 							<a th:if="${board.number}>0" th:href="@{/match/board/list(type=${title},page=${board.number-1},size=10,city=${city})}" class="button small">prev</a>
 						</li>
 
-						<li th:each="index :${#numbers.sequence(1, __${board.totalPages == 0}__ ? 1 : __${board.totalPages}__)}">
+						<li th:each="index :${#numbers.sequence(1, __${board.totalPages == 0}__ ? 1 : (__${board.totalPages &lt; 5}__ ? __${board.totalPages}__ : __${board.number}__+5))}">
 							<a th:if="${board.number+1==index}" th:text="${index}" th:href="@{/match/board/list(type=${title},page=${index-1},size=10,city=${city})}" class="page active">1</a>
 							<a th:if="${board.number+1!=index}" th:text="${index}" th:href="@{/match/board/list(type=${title},page=${index-1},size=10,city=${city})}" class="page">1</a>
 						</li>
