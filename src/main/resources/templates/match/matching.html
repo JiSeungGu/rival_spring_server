@@ -108,7 +108,7 @@
 						<tbody>
 							<tr th:each="b : ${board}">
 								<!--<td>1</td>-->
-								<td><a th:href="@{/match/board/${b.id}}" th:text="${b.title}">축구해요</a></td>
+								<td><a th:href="@{/match/board/+'${b.id}'}" th:text="${b.title}">축구해요</a></td>
 								<td th:text="${b.team}">김희중</td>
 								<td th:text="${b.time_game}">2017-04-01 17:00</td>
 								<td th:text="${b.people_num}"></td>

@@ -27,7 +27,7 @@ public class MatchDo {
      */
 
     @Id
-    public String id;
+    private String id;
     private String type;
     private String city;
     private String team;
@@ -56,6 +56,7 @@ public class MatchDo {
         this.time_update = time_update;
         this.time_game = time_game;
     }
+
     public String getId() {
         return id;
     }
