@@ -10,65 +10,74 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "user_tb")
 public class UserDo {
 
+
+    @Id
     private String id;
-    private String userid;
     private String name;
+    private int height;
+    private int weight;
     private int age;
+    private String teams;
 
 
-    public UserDo(String userid, String name, int age) {
-        this.userid = userid;
+    public UserDo() {
+
+    }
+
+    public UserDo(String id, String name, int height, int weight, int age, String teams) {
+        this.id = id;
         this.name = name;
+        this.height = height;
+        this.weight = weight;
         this.age = age;
+        this.teams = teams;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getUserid() {
-        return userid;
-    }
-
     public void setId(String id) {
         this.id = id;
-    }
-
-    public void setUserid(String userid) {
-        this.userid = userid;
-    }
-
-    public UserDo() {
-
     }
 
     public String getName() {
         return name;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public int getAge() {
+        return age;
     }
 
     public void setAge(int age) {
         this.age = age;
     }
 
-
-
-    @Override
-    public String toString() {
-        return "UserDo{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                '}';
+    public String getTeams() {
+        return teams;
     }
 
-
+    public void setTeams(String teams) {
+        this.teams = teams;
+    }
 }

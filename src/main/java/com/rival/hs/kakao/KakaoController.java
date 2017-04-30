@@ -28,8 +28,6 @@ public class KakaoController {
     public String kakao(@RequestBody KakaoDo body) {
 
 
-        System.out.println("test");
-
         dao.save(body);
 
         return "redirect:/index";

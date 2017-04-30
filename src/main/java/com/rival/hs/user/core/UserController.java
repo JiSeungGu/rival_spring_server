@@ -24,7 +24,7 @@ public class UserController implements UserControllerMapper{
     public List<UserDo> index(@RequestParam(required = false) String id, @RequestParam(required = false) String name) {
 
         if(name ==null)
-            return userMongoRepository.findByUserid(id);
+            return userMongoRepository.findById(id);
         else
             return userMongoRepository.findByName(name);
     }
