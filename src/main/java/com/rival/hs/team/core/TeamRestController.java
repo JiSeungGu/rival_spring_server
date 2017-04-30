@@ -1,5 +1,7 @@
-package com.rival.hs.team;
+package com.rival.hs.team.core;
 
+import com.rival.hs.team.domain.TeamDo;
+import com.rival.hs.team.dao.TeamMongoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

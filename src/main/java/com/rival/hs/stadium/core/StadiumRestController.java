@@ -1,4 +1,4 @@
-package com.rival.hs.stadium;
+package com.rival.hs.stadium.core;
 
 import org.springframework.web.bind.annotation.RestController;
 
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-public class StadiumRestController {
+public class StadiumRestController implements StadiumRestControllerMapper {
 
 
 }

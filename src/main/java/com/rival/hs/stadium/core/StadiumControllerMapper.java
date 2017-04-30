@@ -1,4 +1,4 @@
-package com.rival.hs.stadium;
+package com.rival.hs.stadium.core;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public interface StadiumControllerMapper {
 
+    @RequestMapping("/stadium")
     String getStadium();
 
     @RequestMapping("/stadium/board/list")
@@ -18,5 +19,7 @@ public interface StadiumControllerMapper {
 
     @RequestMapping("/stadium/board/{id}")
     String getStadiumDetail(Model model, @PathVariable float id);
+
+
 
 }

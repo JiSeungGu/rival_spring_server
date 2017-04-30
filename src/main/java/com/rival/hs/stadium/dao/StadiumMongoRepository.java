@@ -1,5 +1,6 @@
-package com.rival.hs.stadium;
+package com.rival.hs.stadium.dao;
 
+import com.rival.hs.stadium.domain.StadiumDo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;

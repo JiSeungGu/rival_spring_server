@@ -128,10 +128,10 @@
 						<p>Content:
 							<textarea name="contents" id="contents"></textarea>
 						</p>
-						<p>
+						<div>
 							<input type="button" value="Submit" onclick="javascript:writeCheck();"/>
 							<input type="reset" value="Reset" />
-						</p>
+						</div>
 					</form>
 				</div>
 			</div>
@@ -226,7 +226,6 @@
             value.stadium_jeju.style.display="";
         }
     }
-
     function writeCheck() {
         var form = document.Sport_Select;
         if(!form.title.value){

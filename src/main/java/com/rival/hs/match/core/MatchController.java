@@ -1,5 +1,9 @@
-package com.rival.hs.match;
+package com.rival.hs.match.core;
 
+import com.rival.hs.match.dao.MatchMongoRepository;
+import com.rival.hs.match.domain.MatchDo;
+import com.rival.hs.mongodb.CounterDao;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,12 +28,13 @@ public class MatchController implements MatchControllerMapper {
     @Autowired
     MatchMongoRepository matchMongoRepository;
 
+    CounterDao counterDao;
+
     /*Matching board Detail*/
     @Override
-    public String getMatchDetail(@PathVariable String id, Model model) {
+    public String getMatchDetail(@PathVariable Long id, Model model) {
         MatchDo matchDo = matchMongoRepository.findOne(id);
         model.addAttribute("board", matchDo);
-        System.out.println(id);
         return "match/match_detail_view";
     }
 
@@ -68,9 +73,13 @@ public class MatchController implements MatchControllerMapper {
         board.setCity(form.getCity());
         board.setStadium(form.getStadium());
         board.setContents(form.getContents());
+
+        Long id = counterDao.sequence("MATCH_TB");
+        board.setId(id);
+
         matchMongoRepository.save(board);
 
-        String UrlType=null;
+        String UrlType = null;
         try {
             UrlType = new String("redirect:/match/board/list?type=" + URLEncoder.encode(form.getType(),"UTF-8") + "&page=0&size=10&city=" + URLEncoder.encode(form.getCity(),"UTF-8"));
             System.out.println(UrlType);
@@ -79,4 +88,36 @@ public class MatchController implements MatchControllerMapper {
         }
         return UrlType;
     }
+
+    /*경기 수정*/
+    @RequestMapping(value="/match/modify")
+    public String matchModifyId(@Validated MatchDo form, @PathVariable Long id){
+        MatchDo board = matchMongoRepository.findOne(id);
+        BeanUtils.copyProperties(board, form);
+        return "match/matchModify";
+    }
+
+    @RequestMapping(value="/match/modify", method = RequestMethod.POST)
+    public String matchModify(@Validated MatchDo form, BindingResult result, Model model){
+        MatchDo board = new MatchDo();
+        board.setTitle(form.getTitle());
+        board.setTeam(form.getTeam());
+        board.setType(form.getType());
+        board.setCity(form.getCity());
+        board.setStadium(form.getStadium());
+        board.setContents(form.getContents());
+        matchMongoRepository.save(board);
+
+
+
+        String UrlType = null;
+        try {
+            UrlType = new String("redirect:/match/board/list?type=" + URLEncoder.encode(form.getType(),"UTF-8") + "&page=0&size=10&city=" + URLEncoder.encode(form.getCity(),"UTF-8"));
+            System.out.println(UrlType);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return UrlType;
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.rival.hs.team;
+package com.rival.hs.team.domain;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
