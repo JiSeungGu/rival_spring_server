@@ -33,29 +33,20 @@ public class StadiumController implements StadiumControllerMapper {
 
     @RequestMapping("/stadium")
     public String getStadium() {
-
-        return "getStadium/stadium_view";
+        return "stadium/stadium_view";
     }
 
     @Override
-    public String getStadiumList(Model model, Pageable pageable, @RequestParam(value = "location", required = false) String location) {
-
+    public String getStadiumList(Model model, Pageable pageable, @RequestParam(value = "location_name", required = false) String location_name) {
         Page<StadiumDo> stadiums;
-        if(location == null) {
-
+        if(location_name == null) {
             stadiums = stadiumMongoRepository.findAll(pageRequest);
-
         }
         else {
-
-            stadiums = stadiumMongoRepository.findAllByLocation_name(location, pageRequest);
-
+            stadiums = stadiumMongoRepository.findAllByLocation_name(location_name, pageRequest);
         }
-
-
         model.addAttribute("stadiums", stadiums);
-
-        return "getStadium/stadium_list_view";
+        return "stadium/stadium_list_view";
     }
 
     @Override
@@ -65,7 +56,7 @@ public class StadiumController implements StadiumControllerMapper {
 
         model.addAttribute("getStadium", stadiumDo);
 
-        return "getStadium/stadium_detail_view";
+        return "stadium/stadium_detail_view";
     }
 
     @RequestMapping("/stadiumapi")

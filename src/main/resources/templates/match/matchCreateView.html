@@ -18,6 +18,7 @@
 
 <!-- Wrapper -->
 <div id="wrapper">
+
 	<!-- Header -->
 	<!-- Note: The "styleN" class below should match that of the banner element. -->
 	<div th:replace="header :: copy"></div>
@@ -128,7 +129,7 @@
 							<textarea name="contents" id="contents"></textarea>
 						</p>
 						<p>
-							<input type="button" value="Submit" th:action="@{/match/new}"/>
+							<input type="button" value="Submit" onclick="javascript:writeCheck();"/>
 							<input type="reset" value="Reset" />
 						</p>
 					</form>
@@ -152,18 +153,18 @@
 <!--[if lte IE 8]><script src="/js/ie/respond.min.js"></script><![endif]-->
 <script src="/js/main.js"></script>
 <script language="javascript">
-	function Choice_City(obj) {
+    function Choice_City(obj) {
         var value = document.forms.Sport_Select;
         if(obj=="서울"){
             value.stadium_none.style.display="none"
             value.stadium_seoul.style.display = "";
             value.stadium_gyeonggi.style.display = "none";
             value.stadium_incheon.style.display="none";
-			value.stadium_chungcheong.style.display="none"
-			value.stadium_jeonla.style.display="none"
-			value.stadium_gyeongsang.style.display="none"
-			value.stadium_jeju.style.display="none";
-		}
+            value.stadium_chungcheong.style.display="none"
+            value.stadium_jeonla.style.display="none"
+            value.stadium_gyeongsang.style.display="none"
+            value.stadium_jeju.style.display="none";
+        }
         else if(obj=="경기"){
             value.stadium_none.style.display="none"
             value.stadium_seoul.style.display = "none";
@@ -183,8 +184,8 @@
             value.stadium_jeonla.style.display="none"
             value.stadium_gyeongsang.style.display="none"
             value.stadium_jeju.style.display="none";
-		}
-		else if(obj=="충청"){
+        }
+        else if(obj=="충청"){
             value.stadium_none.style.display="none"
             value.stadium_seoul.style.display = "none";
             value.stadium_gyeonggi.style.display = "none";
@@ -193,7 +194,7 @@
             value.stadium_jeonla.style.display="none"
             value.stadium_gyeongsang.style.display="none"
             value.stadium_jeju.style.display="none";
-		}
+        }
         else if(obj=="전라"){
             value.stadium_none.style.display="none"
             value.stadium_seoul.style.display = "none";
@@ -223,6 +224,33 @@
             value.stadium_jeonla.style.display="none"
             value.stadium_gyeongsang.style.display="none"
             value.stadium_jeju.style.display="";
+        }
+    }
+
+    function writeCheck() {
+        var form = document.Sport_Select;
+        if(!form.title.value){
+            alert("제목을 적어주세요");
+            form.title.focus();
+            return;
+        }
+        else if(!form.type.value){
+            alert("종목을 선택해주세요")
+            form.type.focus();
+            return;
+        }
+        else if(!form.city.value){
+            alert("도시를 선택해주세요")
+            form.city.focus();
+            return;
+        }
+		/*    else if(!form.stadium.value){
+		 alert("경기장을 선택해주세요")
+		 form.stadium.focus();
+		 return;
+		 }*/
+        else{
+            form.submit();
         }
     }
 </script>

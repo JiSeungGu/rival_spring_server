@@ -3,8 +3,6 @@ package com.rival.hs.match;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -41,7 +39,7 @@ public class MatchRestController {
         return output;
     }
 
-    @RequestMapping(value="/save", method = RequestMethod.GET)
+    /*@RequestMapping(value="/save", method = RequestMethod.GET)
     public void save(
             @RequestParam(required = false) String type,
             @RequestParam(required = false) String city,
@@ -59,7 +57,7 @@ public class MatchRestController {
 
         System.out.println(type+"\n"+city+"\n"+team+"\n"+emblem+"\n"+contents+"\n"+title+"\n"+people_num+"\n"+stadium+"\n"+now+"\n"+time_game);
 
-        matchMongoRepository.save(new MatchDo(type, city, team,emblem, contents, title, people_num, stadium, now, time_game));
-    }
+        matchMongoRepository.save(new MatchDo(id, type, city, team,emblem, contents, title, people_num, stadium, now, time_game));
+    }*/
 
 }

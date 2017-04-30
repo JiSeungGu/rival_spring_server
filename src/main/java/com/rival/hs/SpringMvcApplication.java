@@ -1,10 +1,5 @@
 package com.rival.hs;
 
-import com.rival.hs.match.MatchMongoRepository;
-import com.rival.hs.kakao.KakaoMongoRepository;
-import com.rival.hs.team.TeamMongoRepository;
-import com.rival.hs.user.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +7,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.stereotype.Controller;
 
 import java.nio.charset.Charset;
 
@@ -21,19 +15,9 @@ import java.nio.charset.Charset;
 @SpringBootApplication
 public class SpringMvcApplication {
 
-	@Autowired
-	MatchMongoRepository matchMongoRepository;
-	TeamMongoRepository teamMongoRepository;
-	KakaoMongoRepository kakaoMongoRepository;
-	UserRepository userRepository;
-
 	public static void main(String[] args) {
 
-		Holder holder = new Holder();
-
 		SpringApplication.run(SpringMvcApplication.class, args);
-
-
 	}
 
 	@Bean
