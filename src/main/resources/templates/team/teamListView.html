@@ -78,7 +78,7 @@
                         <th>captain</th>
                     </tr>
                     <tr th:each="team : ${teams}">
-                        <td ><img th:src = "@{'/img/' + ${team.emblem} + '.png'}" width="60px" height="60px"/></td>
+                        <td ><img th:src = "@{'/img/' + ${team.emblem}}" width="60px" height="60px"/></td>
                         <td th:text="${team.name}">김희중</td>
                         <td th:text="${team.type}">김희중</td>
                         <td th:text="${team.city}">김희중</td>
