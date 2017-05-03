@@ -43,7 +43,6 @@ public class MatchDo {
     }
 
     public MatchDo(String type, String city, String team, String emblem, String contents, String title, int people_num, String stadium, String time_update, String time_game) {
-
         this.type = type;
         this.city = city;
         this.team = team;

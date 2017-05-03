@@ -25,9 +25,9 @@ import java.util.ArrayList;
 public class StadiumController implements StadiumControllerMapper {
 
 
-    PageRequest pageRequest = new PageRequest(0,10,new Sort(Sort.Direction.DESC, "_id"));
+        PageRequest pageRequest = new PageRequest(0,10,new Sort(Sort.Direction.DESC, "_id"));
 
-    @Autowired
+        @Autowired
     StadiumMongoRepository stadiumMongoRepository;
 
     @Override

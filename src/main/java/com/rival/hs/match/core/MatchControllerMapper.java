@@ -31,6 +31,9 @@ public interface MatchControllerMapper {
     @RequestMapping(value="/match/new", method = RequestMethod.POST)
     String matchCreate(@Validated MatchDo form, BindingResult result, Model model);
 
-    @RequestMapping("/match/modify/{id}")
-    String matchModifyId(@Validated MatchDo form, @PathVariable Long id);
+    @RequestMapping(value="/match/modify/{id}")
+    String matchModifyId(@PathVariable Long id, MatchDo form);
+
+    @RequestMapping(value="/match/modify", method = RequestMethod.POST)
+    String matchModify(@RequestParam(value = "id", required = false) Long id, MatchDo form, BindingResult result);
 }

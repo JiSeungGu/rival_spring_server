@@ -2,11 +2,13 @@ package com.rival.hs.match.core;
 
 import com.rival.hs.match.dao.MatchMongoRepository;
 import com.rival.hs.match.domain.MatchDo;
-import com.rival.hs.mongodb.CounterDao;
+import com.rival.hs.mongodb.CounterDo;
+import com.rival.hs.mongodb.CounterRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,7 +30,11 @@ public class MatchController implements MatchControllerMapper {
     @Autowired
     MatchMongoRepository matchMongoRepository;
 
-    CounterDao counterDao;
+    @Autowired
+    CounterRepository counterRepository;
+
+    @Autowired
+    MongoTemplate mongoTemplate;
 
     /*Matching board Detail*/
     @Override
@@ -66,6 +72,7 @@ public class MatchController implements MatchControllerMapper {
     /*경기 만들기*/
     @RequestMapping(value="/match/new", method = RequestMethod.POST)
     public String matchCreate(@Validated MatchDo form, BindingResult result, Model model) {
+
         MatchDo board = new MatchDo();
         board.setTitle(form.getTitle());
         board.setTeam(form.getTeam());
@@ -73,9 +80,8 @@ public class MatchController implements MatchControllerMapper {
         board.setCity(form.getCity());
         board.setStadium(form.getStadium());
         board.setContents(form.getContents());
-
-        Long id = counterDao.sequence("MATCH_TB");
-        board.setId(id);
+        CounterDo counterDo = counterRepository.getCounterDo("MATCH_TB");
+        board.setId(counterDo.getSequence_value());
 
         matchMongoRepository.save(board);
 
@@ -90,15 +96,14 @@ public class MatchController implements MatchControllerMapper {
     }
 
     /*경기 수정*/
-    @RequestMapping(value="/match/modify")
-    public String matchModifyId(@Validated MatchDo form, @PathVariable Long id){
-        MatchDo board = matchMongoRepository.findOne(id);
+    public String matchModifyId(@PathVariable Long id, MatchDo form){
+        MatchDo board = matchMongoRepository.findOne(form.getId());
         BeanUtils.copyProperties(board, form);
         return "match/matchModify";
     }
 
-    @RequestMapping(value="/match/modify", method = RequestMethod.POST)
-    public String matchModify(@Validated MatchDo form, BindingResult result, Model model){
+    public String matchModify(@RequestParam(value = "id", required = false) Long id, MatchDo form, BindingResult result){
+        System.out.println(id);
         MatchDo board = new MatchDo();
         board.setTitle(form.getTitle());
         board.setTeam(form.getTeam());
@@ -106,9 +111,8 @@ public class MatchController implements MatchControllerMapper {
         board.setCity(form.getCity());
         board.setStadium(form.getStadium());
         board.setContents(form.getContents());
+        board.setId(id);
         matchMongoRepository.save(board);
-
-
 
         String UrlType = null;
         try {

@@ -125,6 +125,18 @@
 							</select>
 						</div>
 						<p></p>
+						Time :
+						<div class="row">
+							<div class='input-group date' id='datetimepicker'>
+								<div class="col-sm-10">
+									<input type='text' name="time_game" id="time_game"/>
+								</div>
+								<div class="input-group-addon col-sm-2">
+									<div class="fa fa-calendar"></div>
+								</div>
+							</div>
+						</div>
+						<p></p>
 						<p>Content:
 							<textarea name="contents" id="contents"></textarea>
 						</p>
@@ -253,6 +265,12 @@
         }
     }
 </script>
-
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker').datetimepicker({
+            locale: 'ru'
+        });
+    });
+</script>
 </body>
 </html>
