@@ -13,6 +13,12 @@
 	<link rel="stylesheet" href="/css/main.css" />
 	<!--[if lte IE 9]><link rel="stylesheet" href="/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="/css/ie8.css" /><![endif]-->
+	<!--jQuery UI CSS파일-->
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+	<!--jQuery 기본 js파일-->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<!--jQuery UI 라이브러리 js파일-->
+	<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 </head>
 <body>
 
@@ -126,15 +132,9 @@
 						</div>
 						<p></p>
 						Time :
-						<div class="row">
-							<div class='input-group date' id='datetimepicker'>
-								<div class="col-sm-10">
-									<input type='text' name="time_game" id="time_game"/>
-								</div>
-								<div class="input-group-addon col-sm-2">
-									<div class="fa fa-calendar"></div>
-								</div>
-							</div>
+						<div class='input-group date' id='datetimepicker'>
+							<input type='text' name="time_game" id="time_game"/>
+							<div class="input-group-addon fa fa-calendar"></div>
 						</div>
 						<p></p>
 						<p>Content:
@@ -267,7 +267,7 @@
 </script>
 <script type="text/javascript">
     $(function () {
-        $('#datetimepicker').datetimepicker({
+        $('#datetimepicker').datepicker({
             locale: 'ru'
         });
     });
