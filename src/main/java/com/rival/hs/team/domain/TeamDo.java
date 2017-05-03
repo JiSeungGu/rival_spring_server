@@ -2,6 +2,7 @@ package com.rival.hs.team.domain;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,28 @@ public class TeamDo {
     private String captain;
     @Field("member_id")
     private List<String> member_id = new ArrayList<>();
+
     private String emblem;
+    private MultipartFile upload_emblem;
+    private MultipartFile upload_img;
+
+
+    public MultipartFile getUpload_img() {
+        return upload_img;
+    }
+
+    public void setUpload_img(MultipartFile upload_img) {
+        this.upload_img = upload_img;
+    }
+
+    public MultipartFile getUpload_emblem() {
+        return upload_emblem;
+    }
+
+    public void setUpload_emblem(MultipartFile upload_emblem) {
+        this.upload_emblem = upload_emblem;
+    }
+
     private String image;
 
 
@@ -109,6 +131,22 @@ public class TeamDo {
 
     public List<String> getMember_id() {
         return member_id;
+    }
+
+    @Override
+    public String toString() {
+        return "TeamDo{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", city='" + city + '\'' +
+                ", introduce='" + introduce + '\'' +
+                ", captain='" + captain + '\'' +
+                ", emblem='" + emblem + '\'' +
+                ", upload_emblem=" + upload_emblem +
+                ", upload_img=" + upload_img +
+                ", image='" + image + '\'' +
+                '}';
     }
 
     public void setMember_id(String member_id) {

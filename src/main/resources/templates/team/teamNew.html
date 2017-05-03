@@ -68,13 +68,13 @@
 									<header class="major">
 										<h2>Make your team</h2>
 									</header>
-									<form action="#" th:action="@{/team_make}" th:object="${TeamDo}" method="post">
+									<form th:action="@{/team_make}" th:object="${TeamDo}" method="post" enctype="multipart/form-data">
 										<p>Name: <input type="text" th:field="*{name}" /></p>
 										<p>type: <input type="text" th:field="*{type}"  /></p>
 										<p>city: <input type="text" th:field="*{city}"  /></p>
 										<p>captain name: <input type="text" th:field="*{captain}"  /></p>
-										<p>emblam: <input type="text" th:field="*{emblem}"  /></p>
-										<p>image: <input type="text" th:field="*{image}"  /></p>
+										<p>emblam: <input type="file" th:field="*{upload_emblem}" /></p>
+										<p>image: <input type="file" th:field="*{upload_img} "  /></p>
 										<p>content: </p>
 										<p><textarea th:field="*{introduce}"  /></p>
 										<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>

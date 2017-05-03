@@ -102,7 +102,7 @@ public class WebController {
     @RequestMapping(value="/teamNew")
     public String teamNew(Model model){
         model.addAttribute("TeamDo",new TeamDo());
-        return "teamNew";
+        return "team/teamNew";
     }
 
 }

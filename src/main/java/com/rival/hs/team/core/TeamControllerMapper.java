@@ -8,7 +8,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -30,7 +32,7 @@ public interface TeamControllerMapper {
     String getTeamCreateView();
 
 
-    @RequestMapping( value = "/team/board/new", method = RequestMethod.POST)
-    String postTeamCreate(@Validated TeamDo form, BindingResult result, Model model, HttpSession session);
+    @RequestMapping( value = "/team_make", method = RequestMethod.POST)
+    String postTeamCreate(TeamDo form,  BindingResult result, Model model, HttpSession session,HttpServletRequest request);
 
 }
