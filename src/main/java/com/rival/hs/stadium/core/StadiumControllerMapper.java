@@ -15,7 +15,7 @@ public interface StadiumControllerMapper {
     String getStadium();
 
     @RequestMapping("/stadium/board/list")
-    String getStadiumList(Model model, Pageable pageable, @RequestParam(value = "location_name", required = false) String location_Name);
+    String getStadiumList(Model model, Pageable pageable, @RequestParam(value = "location_name", required = false) String location_name);
 
     @RequestMapping("/stadium/board/{id}")
     String getStadiumDetail(Model model, @PathVariable float id);

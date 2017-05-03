@@ -12,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
@@ -121,7 +120,8 @@ public class TeamController implements TeamControllerMapper{
         teamdo.setMember_id(kakao_id);
 
         teamMongoRepository.save(teamdo);
-        return "redirect:/team";
+        return "redirect:/team/team";
+
     }
 }
 

@@ -20,15 +20,20 @@ public interface MatchControllerMapper {
     String match();
 
     @RequestMapping("/match/board/{id}")
-    String getMatchDetail(@PathVariable String id, Model model);
+    String getMatchDetail(@PathVariable Long id, Model model);
 
     @RequestMapping(value="/match/board/list", method = RequestMethod.GET)
     String SportBoard(Model model, @RequestParam(value="type", required = false) String type, @RequestParam(value="city", required = false)String city, Pageable pageable);
 
-    @RequestMapping(value="/match/new", method = RequestMethod.GET)
+    @RequestMapping(value="/match/board/new", method = RequestMethod.GET)
     String matchCreateView();
 
     @RequestMapping(value="/match/new", method = RequestMethod.POST)
     String matchCreate(@Validated MatchDo form, BindingResult result, Model model);
 
+    @RequestMapping(value="/match/modify/{id}")
+    String matchModifyId(@PathVariable Long id, MatchDo form);
+
+    @RequestMapping(value="/match/modify", method = RequestMethod.POST)
+    String matchModify(@RequestParam(value = "id", required = false) Long id, MatchDo form, BindingResult result);
 }

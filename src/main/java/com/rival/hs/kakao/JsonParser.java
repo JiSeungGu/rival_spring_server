@@ -20,19 +20,19 @@ public class JsonParser {
 
     }
 
-    public Kakao_info parse(String jsondata) {
-        try {
-
-            jsonObject = (JSONObject) jsonParser.parse(jsondata);
-            jsonObject2 = (JSONObject)jsonObject.get("properties");
-
-        } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return new Kakao_info(jsonObject.get("id").toString(),new Kakao_properties(jsonObject2.get("nickname").toString(), jsonObject2.get("profile_image").toString(), jsonObject2.get("thumbnail_image").toString()));
-    }
+//    public Kakao_info parse(String jsondata) {
+//        try {
+//
+//            jsonObject = (JSONObject) jsonParser.parse(jsondata);
+//            jsonObject2 = (JSONObject)jsonObject.get("properties");
+//
+//        } catch (ParseException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//
+//        return new Kakao_info(jsonObject.get("id").toString(),new Kakao_properties(jsonObject2.get("nickname").toString(), jsonObject2.get("profile_image").toString(), jsonObject2.get("thumbnail_image").toString()));
+//    }
 
 
 }

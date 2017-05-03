@@ -1,6 +1,7 @@
 package com.rival.hs.user;
 
 
+import com.rival.hs.user.domain.UserDo;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 public interface UserRepository extends MongoRepository<UserDo,String> {
 
    public List<UserDo> findAll();
-   public List<UserDo> findByUserid(String userid);
+   public List<UserDo> findById(String id);
    public List<UserDo> findByName(String name);
 
 

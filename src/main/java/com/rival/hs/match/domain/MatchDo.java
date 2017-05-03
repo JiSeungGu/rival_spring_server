@@ -12,7 +12,7 @@ public class MatchDo {
 
     /**
      * @author MinwooPark<pmw9027@outlook.kr>
-     * @param String    id              팀 뭐시기
+     * @param Long    id              팀 뭐시기
      * @param String    type            팀 뭐시기
      * @param String    city            팀 뭐시기
      * @param String    team            팀 뭐시기
@@ -27,7 +27,7 @@ public class MatchDo {
      */
 
     @Id
-    public Long id;
+    private Long id;
     private String type;
     private String city;
     private String team;
@@ -43,7 +43,6 @@ public class MatchDo {
     }
 
     public MatchDo(String type, String city, String team, String emblem, String contents, String title, int people_num, String stadium, String time_update, String time_game) {
-
         this.type = type;
         this.city = city;
         this.team = team;
@@ -57,7 +56,7 @@ public class MatchDo {
         this.time_game = time_game;
     }
 
-    public Long getId() {
+   public Long getId() {
         return id;
     }
 

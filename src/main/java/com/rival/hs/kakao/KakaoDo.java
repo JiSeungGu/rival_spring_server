@@ -2,6 +2,7 @@ package com.rival.hs.kakao;
 
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -21,25 +22,28 @@ public class KakaoDo {
      * @param String scope    팀 뭐시기
      */
 
+    @Id
+    private Long id;
     private String team;
     private String access_token;
     private String token_type;
     private String refresh_token;
     private String expires_in;
     private String scope;
-    private Kakao_info kakao_info;
+    private Kakao_properties kakao_properties;
 
     public KakaoDo() {
+
     }
 
-    public KakaoDo(String access_token, String token_type, String refresh_token, String expires_in, String scope) {
-        this.access_token = access_token;
-        this.token_type = token_type;
-        this.refresh_token = refresh_token;
-        this.expires_in = expires_in;
-        this.scope = scope;
+    public KakaoDo(Long id) {
+        this.id = id;
     }
 
+    public KakaoDo(Long id, Kakao_properties kakao_properties) {
+        this.id = id;
+        this.kakao_properties = kakao_properties;
+    }
 
     public String getTeam() {
         return team;
@@ -89,36 +93,12 @@ public class KakaoDo {
         this.scope = scope;
     }
 
-
-
-    public Kakao_info getKakao_info() {
-        return kakao_info;
+    public Long getId() {
+        return id;
     }
 
-    public void setKakao_info(Kakao_info kakao_info) {
-        this.kakao_info = kakao_info;
-
-    }
-}
-
-class Kakao_info {
-
-
-    private String _id;
-    private Kakao_properties kakao_properties;
-
-
-    public Kakao_info(String _id, Kakao_properties kakao_properties) {
-        this._id = _id;
-        this.kakao_properties = kakao_properties;
-    }
-
-    public String get_id() {
-        return _id;
-    }
-
-    public void set_id(String _id) {
-        this._id = _id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Kakao_properties getKakao_properties() {
@@ -128,18 +108,18 @@ class Kakao_info {
     public void setKakao_properties(Kakao_properties kakao_properties) {
         this.kakao_properties = kakao_properties;
     }
-
-
-    public String getId() {
-        return _id;
-    }
 }
+
 
 class Kakao_properties {
 
     private String nickname;
     private String profile_image;
     private String thumbnail_image;
+
+    public Kakao_properties() {
+
+    }
 
     public Kakao_properties(String nickname, String profile_image, String thumbnail_image) {
         this.nickname = nickname;
